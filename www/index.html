@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="app/lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="app/css/style.css" rel="stylesheet">
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <!-- ionic/angularjs js -->
+  </head>
+  <body ng-app="app">
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Ionic Blank Starter</h1>
+      </ion-header-bar>
+      <ion-content ng-controller="InicioController">
+        <h3>{{dueno}} </h3>
+        <br>
+        <h5>Informacíon de la sincronizacion</h5>
+        <label for="">Comienzo: {{start_sync}}</label>
+        <br>
+        <label for="">Fin: {{end_sync}}</label>
+        <br>
+        <label for="">Docs leidos: {{docs_read}}</label>
+        <br>
+        <label for="">Docs escritos: {{docs_written}}</label>
+        <br>
+        <label for="">Docs erroneos: {{docs_written_fail}}</label>
+        <br>
+        <label for="">Status: {{status_sync}}</label>
+        <br>
+        <label for="">Docs Locales: {{num_localDocs}}</label>
+        <br>
+        <br>
+        <a ng-href="views/EstadisticasView.html">Continuar</a><br>
+      </ion-content>
+    </ion-pane>
+    <script src="app/lib/ionic/js/ionic.bundle.js"></script>
+    <script src="app/lib/pouchdb/dist/pouchdb.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="app/lib/phaser/phaser.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/services/service.js"></script>
+    <script src="app/controllers/InicioController.js"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="../app/lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="../app/css/style.css" rel="stylesheet">
+    <script src="../app/lib/ionic/js/ionic.bundle.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="../cordova.js"></script>
+    <script src="../app/lib/pouchdb/dist/pouchdb.min.js"></script>
+    <!--phaser/phaser.min.js-->
+    <script src="../app/lib/phaser/phaser.min.js"></script>
+    <!-- your app's js -->
+    <script src="../app/app.js"></script>
+    <script src="../app/controllers/RuletaController.js"></script>
+  </head>
+  <body ng-app="app">
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Ionic Blank Starter</h1>
+      </ion-header-bar>
+      <ion-content  ng-controller="RuletaController">
+        <h3>{{dueno}} </h3>
+        <div id="workspace" class="center">
+      </ion-content>
+    </ion-pane>
+
+  </body>
+</html>
