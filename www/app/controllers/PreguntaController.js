@@ -21,7 +21,7 @@ function AppPregunta($scope,$ionicPlatform) {
     $scope.RespuestaB="RESPUESTA B";
     $scope.RespuestaC="RESPUESTA C";
     $scope.RespuestaD="RESPUESTA D";
-    $scope.enunciado=createHTML();;
+    $scope.enunciado=createHTML();
 
   function createHTML(){
     
