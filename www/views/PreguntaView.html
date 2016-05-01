@@ -20,20 +20,27 @@
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic Blank Starter</h1>
       </ion-header-bar>
-      <ion-content  ng-controller="AppPregunta">
+      <ion-content ng-controller="AppPregunta">
+       
+       <div>
+          <p ng-bind-html="enunciado"></p>
+          <p>{{cuerpoPregunta}}</p>
+      </div>
         
-      <button class="{{colorClass(1)}}" ng-click="checkAnswer(1)">
-        {{RespuestaA}}
-      </button>
-      <button class="{{colorClass(2)}}" ng-click="checkAnswer(2)">
-        {{RespuestaB}}
-      </button>
-      <button class="{{colorClass(3)}}" ng-click="checkAnswer(3)">
-        {{RespuestaC}}
-      </button>
-      <button class="{{colorClass(4)}}" ng-click="checkAnswer(4)">
-        {{RespuestaD}}
-      </button>
+        <div>
+            <button class="{{colorClass(1)}}" ng-click="checkAnswer(1)">
+              {{RespuestaA}}
+            </button>
+            <button class="{{colorClass(2)}}" ng-click="checkAnswer(2)">
+              {{RespuestaB}}
+            </button>
+            <button class="{{colorClass(3)}}" ng-click="checkAnswer(3)">
+              {{RespuestaC}}
+            </button>
+            <button class="{{colorClass(4)}}" ng-click="checkAnswer(4)">
+              {{RespuestaD}}
+            </button>
+        <div>
       </ion-content>
     </ion-pane>
   </body>
