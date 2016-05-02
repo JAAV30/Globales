@@ -1,12 +1,12 @@
-angular.module('app').controller('InicioController',['$scope','$ionicPlatform','$ionicLoading','$timeout','QuestionsService',InicioController]);
+angular.module('app').controller('InicioController',['$window','$scope','$ionicPlatform','$ionicLoading','$timeout','QuestionsService',InicioController]);
 
-function InicioController($scope,$ionicPlatform,$ionicLoading,$timeout,service) {
+function InicioController($window,$scope,$ionicPlatform,$ionicLoading,$timeout,service) {
 
   $ionicPlatform.ready(function() {
 
       console.log("Ready InicioController");
-      $scope.dueno="Roco trabaje aqui, mensaje por medio de scope de angular";
-
+      $scope.dueno="Montes Scope";
+      show();// --> inicia el Loading
       service.initDB();
 
       service.syncDB()
@@ -19,7 +19,8 @@ function InicioController($scope,$ionicPlatform,$ionicLoading,$timeout,service) 
           $scope.docs_written =dataSync.docs_written;
           $scope.docs_written_fail =dataSync.doc_write_failures ;
           $scope.status_sync =dataSync.status ;
-
+          hide(); // Esconde el loading cuando cargo todo
+          //$window.location.href = 'views/RegistroView.html' //redirecciona
         })
       .catch(
         function(error){
@@ -31,17 +32,23 @@ function InicioController($scope,$ionicPlatform,$ionicLoading,$timeout,service) 
         console.log("Now after sync, we got all the questions",questions);
         $scope.$apply(function(){
           $scope.num_localDocs = questions.length ;
+
+          if(questions.length > 0){
+            $window.location.href = 'views/RegistroView.html'
+          }
+
         });
       })
-      
-      $scope.show = function() {
+
+      function show() {
         $ionicLoading.show({
-          duration: 1000,
+          //duration: 50000,
           noBackdrop: true,
-          template: '<p class="item-icon-left">Loading stuff...<ion-spinner icon="lines"/></p>'
+          template: '<p class="item-icon-left">Loading database information...<ion-spinner icon="lines"/></p>'
         });
         //hide();
       };
+
       function hide (){
         $ionicLoading.hide();
       };
