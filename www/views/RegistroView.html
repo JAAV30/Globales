@@ -21,7 +21,42 @@
         <h1 class="title">Registro</h1>
       </ion-header-bar>
       <ion-content  ng-controller="RegistroController">
-        <h3>{{dueno}} </h3>
+        <h2> Bienvenido, por favor registrese para obtener una mejor experiencia de juego </h2>
+        <br>
+        <div class="entradanickname">
+          <label class="item item-input">
+            <input type="text" placeholder="NickName">
+          </label>
+        </div>
+
+        <div class="idiomayciencia">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Digite el idioma:
+            </div>
+            <select>
+              <option selected="">Inglés</option>
+              <option>Francés</option>
+            </select>
+          </label>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Digite la ciencia:
+            </div>
+            <select>
+              <option selected="">Física Mate</option>
+              <option>Química</option>
+              <option>Biología</option>
+            </select>
+          </label>
+        </div>
+        <br>
+        <div class="buttonsubmit">
+          <button class="button button-positive">
+            Enviar
+          </button>
+        </div>
+
       </ion-content>
     </ion-pane>
 

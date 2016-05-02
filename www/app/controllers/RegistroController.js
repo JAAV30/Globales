@@ -5,7 +5,7 @@ function RegistroController($scope,$ionicPlatform) {
   $ionicPlatform.ready(function() {
 
       console.log("Ready RegistroController");
-      $scope.dueno="Fofo trabaje aqui, mensaje por medio de scope de angular";
+      $scope.dueno="ZORRO";
   });
 
 
