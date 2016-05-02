@@ -1,6 +1,6 @@
-angular.module('app').controller('InicioController',['$scope','$ionicPlatform','QuestionsService',InicioController]);
+angular.module('app').controller('InicioController',['$scope','$ionicPlatform','$ionicLoading','$timeout','QuestionsService',InicioController]);
 
-function InicioController($scope,$ionicPlatform,service) {
+function InicioController($scope,$ionicPlatform,$ionicLoading,$timeout,service) {
 
   $ionicPlatform.ready(function() {
 
@@ -33,9 +33,19 @@ function InicioController($scope,$ionicPlatform,service) {
           $scope.num_localDocs = questions.length ;
         });
       })
-
-
-
+      
+      $scope.show = function() {
+        $ionicLoading.show({
+          duration: 1000,
+          noBackdrop: true,
+          template: '<p class="item-icon-left">Loading stuff...<ion-spinner icon="lines"/></p>'
+        });
+        //hide();
+      };
+      function hide (){
+        $ionicLoading.hide();
+      };
+      
   });
 
 
