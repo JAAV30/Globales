@@ -5,7 +5,7 @@ function RuletaController($scope,$ionicPlatform) {
   $ionicPlatform.ready(function() {
 
       console.log("Ready RuletaController");
-      $scope.dueno="Hume trabajando aquí!";
+      $scope.dueno="Humesito trabajando aquí!";
       loadPhaserSettings();
   });
 
