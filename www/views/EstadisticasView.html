@@ -16,17 +16,16 @@
       <script src="../app/services/service.js"></script>
     <script src="../app/controllers/EstadisticasController.js"></script>
   </head>
-  <body ng-app="app">
+  <body ng-app="app" ng-controller="EstadisticasController">
     <ion-pane>
-      <ion-header-bar>
-        <div class="bar bar-header bar-positive">
-           <button class="button icon ion-navicon"></button>
-              <h1 class="title">Ruta U</h1>
-           <button class="button icon ion-home"></button>
+      <ion-header-bar class="bar-stable">
+        <button class="button icon ion-navicon"></button>
+        <h1 class="title">Elegir jugador</h1>
+        <div class="buttons">
+          <button ng-click="showEditPlayerModal()" class="button button-icon icon ion-edit"></button>
         </div>
-      </div>
       </ion-header-bar>
-      <ion-content class="padding has-subheader"  ng-controller="EstadisticasController">
+      <ion-content class="padding has-subheader">
         <div class="row responsive-sm">
           <div class="col">
             <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
@@ -77,6 +76,47 @@
       </div>
       </ion-content>
     </ion-pane>
+
+    <script id="edit-player.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title">Jugador</h1>
+          <div class="buttons">
+          <button ng-hide="isAdd" ng-click="deletePlayer()" class="button button-icon icon ion-trash-a"></button>
+          </div>
+        </ion-header-bar>
+        <ion-content>
+          <div class="list list-inset">
+            <label class="item item-input">
+            <input type="text" placeholder="Name" ng-model="currentPlayer.nickname">
+            </label>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Ciencia
+              </div>
+              <select ng-model="currentPlayer.science">
+                <option>Biología</option>
+                <option selected>Física Matemática</option>
+                <option>Química</option>
+              </select>
+            </label>
+            <label class="item item-input item-select">
+            <div class="input-label">
+              Idioma
+            </div>
+            <select  ng-model="currentPlayer.languaje">
+              <option>Inglés</option>
+              <option selected>Francés</option>
+            </select>
+          </label>
+          </div>
+          <div class="padding">
+            <button ng-click="savePlayer()" class="button button-block button-positive activated">Guardar</button>
+          </div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+
 
   </body>
 </html>
