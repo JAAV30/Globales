@@ -5,7 +5,7 @@ function RuletaController($scope,$ionicPlatform) {
   $ionicPlatform.ready(function() {
 
       console.log("Ready RuletaController");
-      $scope.dueno="Hume trabaje aqui, mensaje por medio de scope de angular";
+      $scope.dueno="Hume trabajando aquí!";
       loadPhaserSettings();
   });
 
@@ -97,7 +97,7 @@ function RuletaController($scope,$ionicPlatform) {
               // now we can spin the wheel again
               canSpin = true;
               // writing the prize you just won
-              prizeText.text = slicePrizes[prize];
+              prizeText.text = "Young mulah baby!!!"//slicePrizes[prize];
               console.log(slicePrizes[prize]);
               /*
               var materia = slicePrizes[prize];
