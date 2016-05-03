@@ -13,6 +13,7 @@
     <script src="../app/lib/pouchdb/dist/pouchdb.min.js"></script>
     <!-- your app's js -->
     <script src="../app/app.js"></script>
+      <script src="../app/services/service.js"></script>
     <script src="../app/controllers/EstadisticasController.js"></script>
   </head>
   <body ng-app="app">
@@ -60,7 +61,7 @@
                     <button class="button button-full button-balanced">¡Jugar!</button>
             </div>
             <div class="col">
-                        <h3>{{dueno}}</h3>
+                        <h3>Jugador seleccionado: {{currentPlayer.nickname}}</h3>
             </div>
             <div class="col">
         <a ng-href="RegistroView.html">Fofo</a><br>

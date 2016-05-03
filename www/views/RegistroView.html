@@ -13,54 +13,66 @@
     <script src="../app/lib/pouchdb/dist/pouchdb.min.js"></script>
     <!-- your app's js -->
     <script src="../app/app.js"></script>
+    <script src="../app/services/service.js"></script>
     <script src="../app/controllers/RegistroController.js"></script>
   </head>
   <body ng-app="app">
-    <ion-pane>
+    <ion-pane ng-controller="RegistroController">
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Registro</h1>
+        <h1 class="title">Elegir jugador</h1>
+        <div class="buttons">
+          <button ng-click="showAddPlayerModal()" class="button button-icon icon ion-android-add"></button>
+        </div>
       </ion-header-bar>
-      <ion-content  ng-controller="RegistroController">
-        <h2> Bienvenido, por favor registrese para obtener una mejor experiencia de juego </h2>
-        <br>
-        <div class="entradanickname">
-          <label class="item item-input">
-            <input type="text" placeholder="NickName">
-          </label>
-        </div>
-
-        <div class="idiomayciencia">
-          <label class="item item-input item-select">
-            <div class="input-label">
-              Digite el idioma:
-            </div>
-            <select>
-              <option selected="">Inglés</option>
-              <option>Francés</option>
-            </select>
-          </label>
-          <label class="item item-input item-select">
-            <div class="input-label">
-              Digite la ciencia:
-            </div>
-            <select>
-              <option selected="">Física Mate</option>
-              <option>Química</option>
-              <option>Biología</option>
-            </select>
-          </label>
-        </div>
-        <br>
-        <div class="buttonsubmit">
-          <a href="EstadisticasView.html">
-          <button class="button button-positive">
-            Enviar
-          </button>
-        </a>
-        </div>
-
+      <ion-content >
+          <ion-list>
+            <ion-item ng-repeat="p in players" ng-click="selectPlayer(p)">
+              <div style="float: left">{{ p.nickname }}</div>
+              <button ng-click="showEditPlayerModal(p)" style="float: right" class="button button-icon icon ion-edit"></button>
+            </ion-item>
+          </ion-list>
       </ion-content>
     </ion-pane>
+
+    <script id="add-or-edit-player.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title">Jugador</h1>
+          <div class="buttons">
+          <button ng-hide="isAdd" ng-click="deletePlayer()" class="button button-icon icon ion-trash-a"></button>
+          </div>
+        </ion-header-bar>
+        <ion-content>
+          <div class="list list-inset">
+            <label class="item item-input">
+            <input type="text" placeholder="Name" ng-model="player.nickname">
+            </label>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Ciencia
+              </div>
+              <select ng-model="player.science">
+                <option>Biología</option>
+                <option selected>Física Matemática</option>
+                <option>Química</option>
+              </select>
+            </label>
+            <label class="item item-input item-select">
+            <div class="input-label">
+              Idioma
+            </div>
+            <select  ng-model="player.languaje">
+              <option>Inglés</option>
+              <option selected>Francés</option>
+            </select>
+          </label>
+          </div>
+          <div class="padding">
+            <button ng-click="savePlayer()" class="button button-block button-positive activated">Guardar</button>
+          </div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
 
   </body>
 </html>

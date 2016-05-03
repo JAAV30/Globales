@@ -7,36 +7,26 @@ function InicioController($window,$scope,$ionicPlatform,$ionicLoading,$timeout,s
       console.log("Ready InicioController");
       $scope.dueno="Montes Scope";
       show();// --> inicia el Loading
-      service.initDB();
-
+      service.initDBs();
       service.syncDB()
       .then(
         function(dataSync){
           console.log("Success replicating", dataSync);
-          $scope.start_sync = dataSync.start_time;
-          $scope.end_sync = dataSync.end_time;
-          $scope.docs_read =dataSync.docs_read;
-          $scope.docs_written =dataSync.docs_written;
-          $scope.docs_written_fail =dataSync.doc_write_failures ;
-          $scope.status_sync =dataSync.status ;
-          hide(); // Esconde el loading cuando cargo todo
-          //$window.location.href = 'views/RegistroView.html' //redirecciona
         })
       .catch(
         function(error){
           console.log("An error occurred when replicating", error);
         })
-      .then(service.getQuestions)
+      .then(service.get_ID_subject_difficult) // objengo todas las preguntas pero unicamente con el ID,MATERIA,DIFICULTAD
       .then(function(questions){
 
-        console.log("Now after sync, we got all the questions",questions);
+        setTimeout(function(){ // despues de un segundo se oculta el loading
+          hide(); //oculta el Loading
+          $window.location.href = 'views/RegistroView.html'
+        },1000);
+        console.log("Now after sync, we got all the questions",questions.rows);
         $scope.$apply(function(){
-          $scope.num_localDocs = questions.length ;
-
-          if(questions.length > 0){
-            $window.location.href = 'views/RegistroView.html'
-          }
-
+          $scope.questionsCollection = questions.rows;
         });
       })
 
@@ -52,7 +42,7 @@ function InicioController($window,$scope,$ionicPlatform,$ionicLoading,$timeout,s
       function hide (){
         $ionicLoading.hide();
       };
-      
+
   });
 
 
