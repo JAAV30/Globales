@@ -2,18 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" >
+    <title>Menu Principal</title>
 
     <link href="../app/lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="../app/css/style.css" rel="stylesheet">
     <script src="../app/lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- CHARTS -->
+    <link rel="stylesheet" href="../app/lib/angular-chart/angular-chart.min.css">
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <script src="../app/lib/pouchdb/dist/pouchdb.min.js"></script>
     <!-- your app's js -->
     <script src="../app/app.js"></script>
     <script src="../app/controllers/EstadisticasController.js"></script>
+    <!-- cHARTS.JS -->
+    <script src="../app/lib/angular-chart/angular-chart.min.js"></script>
+1   <script src="../app/lib/angular-chart/angular-chart/Chart.min.js"></script>
   </head>
   <body ng-app="app">
     <ion-pane>
@@ -50,8 +56,25 @@
             </div>
             <div class="item item-text-wrap">
               Principales estad&iacute;sticas!
-            </div>
-            <div class="item item-divider">
+              <br/>
+              <div class="card">
+                	<div class="item item-divider">
+                    Grafico Linear
+                  </div>
+                  <div class="item item-text-wrap">
+                    <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="item item-divider">
+                    Grafico de Barras
+                  </div>
+                  <div class="item item-text-wrap">
+                      <canvas id="bar" class="chart chart-bar" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="item item-divider">
               Hola a Todos!
             </div>
           </div>
