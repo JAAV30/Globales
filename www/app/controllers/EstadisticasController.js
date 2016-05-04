@@ -1,42 +1,18 @@
-angular.module('app').controller('EstadisticasController',['$scope','$ionicPlatform','$ionicModal','QuestionsService',EstadisticasController]);
+angular.module('app').controller('EstadisticasController',['$scope','$ionicPlatform','ionic', 'chart.js',EstadisticasController]);
 
-function EstadisticasController($scope,$ionicPlatform,$ionicModal,service) {
+function EstadisticasController($scope,$ionicPlatform,$ionic,$chart.js) {
 
   $ionicPlatform.ready(function() {
 
       console.log("Ready EstadisticasController");
       $scope.dueno="Josue trabaje aqui, mensaje por medio de scope de angular";
 
-
-      $scope.$apply(function(){
-        $scope.currentPlayer = service.getCurrentPlayer();
-      });
-  });
-
-  $ionicModal.fromTemplateUrl('edit-player.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.showEditPlayerModal = function() {
-    $scope.action = 'Edit';
-    $scope.isAdd = false;
-    $scope.modal.show();
-  };
-
-  $scope.savePlayer = function() {
-
-    $scope.modal.hide();
-  };
-
-  $scope.deletePlayer = function() {
-    $scope.modal.hide();
-  };
-
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
+      $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+      $scope.series = ['Series A', 'Series B'];
+      $scope.data = [
+        [65, 59, 80, 81, 56, 55, 40],
+        [28, 48, 40, 19, 86, 27, 90]
+        ];
   });
 
 
