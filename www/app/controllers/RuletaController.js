@@ -27,6 +27,23 @@ function RuletaController($scope,$ionicPlatform) {
     // text field where to show the prize
     var prizeText;
     // PLAYGAME STATE
+	var wierd_modal = function(txt_field, materia){
+            txt_field.text = materia;
+			var modal = document.getElementById('myModal');
+			var canvas = document.getElementById('workspace');
+			var img = document.getElementById('myImg');
+			var modalImg = document.getElementById("img01");
+			var captionText = document.getElementById("caption");
+			canvas.style.display = "none";
+			modal.style.display = "block";
+			modalImg.src = "../app/img/josue.jpg";
+			modalImg.alt = materia;
+			captionText.innerHTML = materia;
+			var span = document.getElementsByClassName("close")[0];
+			span.onclick = function() { 
+				modal.style.display = "none";
+			}
+	}
     var playGame = function(game){};
     playGame.prototype = {
          // function to be executed once the state preloads
@@ -97,8 +114,8 @@ function RuletaController($scope,$ionicPlatform) {
               // now we can spin the wheel again
               canSpin = true;
               // writing the prize you just won
-              prizeText.text = "Young mulah baby!!!"//slicePrizes[prize];
-              console.log(slicePrizes[prize]);
+              //prizeText.text = "Young mulah baby!!!"//slicePrizes[prize];
+			  wierd_modal(prizeText, slicePrizes[prize]);
               /*
               var materia = slicePrizes[prize];
               var hola = s.getQuestion(materia);
