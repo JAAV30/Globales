@@ -27,3 +27,26 @@ angular.module('app', ['ionic'])
 
   });
 })
+.config(function($stateProvider) {
+  $stateProvider
+  .state('registro', {
+    url: '/registro',
+    templateUrl: 'views/RegistroView.html'
+  })
+  .state('estadisticas', {
+    url: '/estadisticas',
+    templateUrl: 'views/EstadisticasView.html'
+  })
+  .state('ruleta', {
+    url: '/ruleta',
+    templateUrl: 'views/RuletaView.html'
+  })
+  .state('pregunta', {
+    url: '/pregunta',
+    templateUrl: 'views/PreguntaView.html'
+  })
+  .state('final', {
+    url: '/final',
+    templateUrl: 'views/Final_JuegoView.html'
+  });
+});

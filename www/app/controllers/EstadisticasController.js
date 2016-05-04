@@ -5,12 +5,13 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,service) {
   $ionicPlatform.ready(function() {
 
       console.log("Ready EstadisticasController");
+      $scope.currentPlayer = service.getCurrentPlayer();
       $scope.dueno="Josue trabaje aqui, mensaje por medio de scope de angular";
-
-
-      $scope.$apply(function(){
-        $scope.currentPlayer = service.getCurrentPlayer();
-      });
+      $scope.ganada=" 17";
+      $scope.perdida=" 6";
+      $scope.habilidad=" Ingles";
+      $scope.debilidad=" Matemáticas";
+      $scope.tiempo=" 40:30";
   });
 
   $ionicModal.fromTemplateUrl('edit-player.html', {

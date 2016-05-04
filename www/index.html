@@ -7,22 +7,18 @@
 
     <link href="app/lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="app/css/style.css" rel="stylesheet">
+    <link href="../app/css/josue_mamon.css" rel="stylesheet">
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
     <!-- ionic/angularjs js -->
   </head>
   <body ng-app="app">
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Loading Data</h1>
-      </ion-header-bar>
-      <ion-content ng-controller="InicioController">
-        <div>
-
-        </div>
-      </ion-content>
-    </ion-pane>
+    <ion-side-menus>
+      <ion-side-menu-content ng-controller="InicioController">
+        <ion-nav-view></ion-nav-view>
+      </ion-side-menu-content>
+    </ion-side-menus>
     <script src="app/lib/ionic/js/ionic.bundle.js"></script>
     <script src="app/lib/pouchdb/dist/pouchdb.min.js"></script>
     <script src="cordova.js"></script>
@@ -30,5 +26,11 @@
     <script src="app/app.js"></script>
     <script src="app/services/service.js"></script>
     <script src="app/controllers/InicioController.js"></script>
+    <script src="../app/controllers/RegistroController.js"></script>
+    <script src="../app/controllers/RuletaController.js"></script>
+    <script src="../app/controllers/PreguntaController.js"></script>
+    <script src="../app/controllers/Final_JuegoController.js"></script>
+    <script src="../app/controllers/RegistroController.js"></script>
+    <script src="../app/controllers/EstadisticasController.js"></script>
   </body>
 </html>
