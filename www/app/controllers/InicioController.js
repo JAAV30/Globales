@@ -1,6 +1,6 @@
-angular.module('app').controller('InicioController',['$window','$scope','$ionicPlatform','$ionicLoading','$timeout','$injector','QuestionsService',InicioController]);
+angular.module('app').controller('InicioController',['$window','$scope','$ionicPlatform','$ionicLoading','$timeout','QuestionsService',InicioController]);
 
-function InicioController($window,$scope,$ionicPlatform,$ionicLoading,$timeout,$injector,service) {
+function InicioController($window,$scope,$ionicPlatform,$ionicLoading,$timeout,service) {
 
   $ionicPlatform.ready(function() {
 
@@ -22,7 +22,7 @@ function InicioController($window,$scope,$ionicPlatform,$ionicLoading,$timeout,$
 
         setTimeout(function(){ // despues de un segundo se oculta el loading
           hide(); //oculta el Loading
-          $injector.get('$state').transitionTo('registro');
+          $window.location.href = 'views/RegistroView.html'
         },1000);
         console.log("Now after sync, we got all the questions",questions.rows);
         $scope.$apply(function(){

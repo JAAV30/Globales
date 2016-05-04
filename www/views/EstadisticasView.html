@@ -4,85 +4,101 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" >
     <title>Menu Principal</title>
+
+    <link href="../app/lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="../app/css/style.css" rel="stylesheet">
+    <script src="../app/lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- CHARTS -->
+    <link rel="stylesheet" href="../app/lib/angular-chart/angular-chart.min.css">
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <script src="../app/lib/pouchdb/dist/pouchdb.min.js"></script>
+    <!-- your app's js -->
+    <script src="../app/app.js"></script>
+      <script src="../app/services/service.js"></script>
+    <script src="../app/controllers/EstadisticasController.js"></script>
+    <!-- cHARTS.JS -->
+    <script src="../app/lib/angular-chart/angular-chart.min.js"></script>
+1   <script src="../app/lib/angular-chart/angular-chart/Chart.min.js"></script>
   </head>
   <body ng-app="app" ng-controller="EstadisticasController">
-    <ion-view>
-      <ion-pane>
-        <ion-header-bar class="bar-stable">
-          <button class="button icon ion-navicon"></button>
-          <h1 class="title">Elegir jugador</h1>
-          <div class="buttons">
-            <button ng-click="showEditPlayerModal()" class="button button-icon icon ion-edit"></button>
-          </div>
-        </ion-header-bar>
-        <ion-content class="padding has-subheader">
-          <div class="row responsive-sm">
-            <div class="col">
-              <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
-                <div class="tabs">
-                  <a class="tab-item active" href="#">
-                    <i class="icon ion-ios-book"></i>
-                    Bachiderato
-                  </a>
-                  <a class="tab-item" href="#">
-                    <i class="icon ion-university"></i>
-                    Universidad
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br/><br/><br/>
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <button class="button icon ion-navicon"></button>
+        <h1 class="title">Elegir jugador</h1>
+        <div class="buttons">
+          <button ng-click="showEditPlayerModal()" class="button button-icon icon ion-edit"></button>
+        </div>
+      </ion-header-bar>
+      <ion-content class="padding has-subheader">
+        <div class="row responsive-sm">
           <div class="col">
-            <div class="card">
-              <div class="item item-divider">
-                Estad&iacute;sticas
-              </div>
-              <div class="item item-text-wrap">
-                Principales estad&iacute;sticas!
-                <br/>
-                <div class="card">
-                  	<div class="item item-divider">
-                      Grafico Linear
-                    </div>
-                    <div class="item item-text-wrap">
-                      <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div class="item item-divider">
-                      Grafico de Barras
-                    </div>
-                    <div class="item item-text-wrap">
-                        <canvas id="bar" class="chart chart-bar" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item item-divider">
-                Hola a Todos!
+            <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+              <div class="tabs">
+                <a class="tab-item active" href="#">
+                  <i class="icon ion-ios-book"></i>
+                  Bachiderato
+                </a>
+                <a class="tab-item" href="#">
+                  <i class="icon ion-university"></i>
+                  Universidad
+                </a>
               </div>
             </div>
           </div>
-              <div class="col">
-                      <button class="button button-full button-balanced">¡Jugar!</button>
-              </div>
-              <div class="col">
-                          <h3>Jugador seleccionado: {{currentPlayer.nickname}}</h3>
-              </div>
-              <div class="col">
-          <a ng-href="#/ruleta">Hume</a><br>
-          <a ng-href="#/pregunta">Jose y Luismi</a><br>
-          <a ng-href="#/final">Voluntario</a><br>
         </div>
-        <br/><br/>
+        <br/><br/><br/>
         <div class="col">
-          <div class="bar bar-footer bar-assertive">
-            <h1 class="title">Copy Right Todos los derechos reservados</h1>
+          <div class="card">
+            <div class="item item-divider">
+              Estad&iacute;sticas
+            </div>
+            <div class="item item-text-wrap">
+              Principales estad&iacute;sticas!
+              <br/>
+              <div class="card">
+                	<div class="item item-divider">
+                    Grafico Linear
+                  </div>
+                  <div class="item item-text-wrap">
+                    <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="item item-divider">
+                    Grafico de Barras
+                  </div>
+                  <div class="item item-text-wrap">
+                      <canvas id="bar" class="chart chart-bar" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="item item-divider">
+              Hola a Todos!
+            </div>
           </div>
         </div>
-        </ion-content>
+            <div class="col">
+                    <button class="button button-full button-balanced">¡Jugar!</button>
+            </div>
+            <div class="col">
+                        <h3>Jugador seleccionado: {{currentPlayer.nickname}}</h3>
+            </div>
+            <div class="col">
+        <a ng-href="RegistroView.html">Fofo</a><br>
+        <a ng-href="RuletaView.html">Hume</a><br>
+        <a ng-href="PreguntaView.html">Jose y Luismi</a><br>
+        <a ng-href="Final_JuegoView.html">Voluntario</a><br>
+      </div>
+      <br/><br/>
+      <div class="col">
+        <div class="bar bar-footer bar-assertive">
+          <h1 class="title">Copy Right Todos los derechos reservados</h1>
+        </div>
+      </div>
+      </ion-content>
     </ion-pane>
-  </ion-view>
 
     <script id="edit-player.html" type="text/ng-template">
       <ion-modal-view>

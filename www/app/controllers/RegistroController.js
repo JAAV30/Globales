@@ -1,6 +1,6 @@
-angular.module('app').controller('RegistroController',['$window','$scope','$ionicPlatform','$ionicModal','$injector','QuestionsService',RegistroController]);
+angular.module('app').controller('RegistroController',['$window','$scope','$ionicPlatform','$ionicModal','QuestionsService',RegistroController]);
 
-function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$injector,service) {
+function RegistroController($window,$scope,$ionicPlatform,$ionicModal,service) {
 
   $ionicPlatform.ready(function() {
 
@@ -48,9 +48,10 @@ function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$injector,
   });
 
   $scope.selectPlayer = function(player){
+
     console.log("Selected player", player);
     service.setCurrentPlayer(player);
-    $injector.get('$state').transitionTo('estadisticas');
+    $window.location.href = 'EstadisticasView.html'
   }
 
 }
