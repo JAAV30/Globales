@@ -1,6 +1,6 @@
-angular.module('app').controller('RuletaController',['$scope','$ionicPlatform',RuletaController]);
+angular.module('app').controller('RuletaController',['$scope','$ionicPlatform','$injector',RuletaController]);
 
-function RuletaController($scope,$ionicPlatform) {
+function RuletaController($scope,$ionicPlatform,$injector) {
 
   $ionicPlatform.ready(function() {
 
@@ -34,13 +34,10 @@ function RuletaController($scope,$ionicPlatform) {
 			var img = document.getElementById('myImg');
 			var modalImg = document.getElementById("img01");
 			var captionText = document.getElementById("caption");
-			canvas.style.display = "none";
-			modal.style.display = "block";
-			modalImg.src = "../app/img/josue.jpg";
-			modalImg.alt = materia;
+			//canvas.style.display = "none";
 			captionText.innerHTML = materia;
 			var span = document.getElementsByClassName("close")[0];
-			span.onclick = function() { 
+			span.onclick = function() {
 				modal.style.display = "none";
 			}
 	}
@@ -67,7 +64,7 @@ function RuletaController($scope,$ionicPlatform) {
               // setting pin registration point in its center
               pin.anchor.set(0.5);
               // adding the text field
-              prizeText = game.add.text(game.world.centerX, 280, "");
+              prizeText = game.add.text(game.world.centerX, 290, "");
               // setting text field registration point in its center
               prizeText.anchor.set(0.5);
               // aligning the text to center
@@ -114,13 +111,8 @@ function RuletaController($scope,$ionicPlatform) {
               // now we can spin the wheel again
               canSpin = true;
               // writing the prize you just won
-              //prizeText.text = "Young mulah baby!!!"//slicePrizes[prize];
-			  wierd_modal(prizeText, slicePrizes[prize]);
-              /*
-              var materia = slicePrizes[prize];
-              var hola = s.getQuestion(materia);
-              alert(hola);
-              */
+              prizeText.text = slicePrizes[prize];
+              $injector.get('$state').transitionTo('pregunta');
 
 
          }

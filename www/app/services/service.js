@@ -9,6 +9,7 @@
       //variables app_db
       var app_db;
       var _players;
+      var _currentPlayer
 
       return {
 
@@ -133,24 +134,11 @@
       };
       //guardo el usuario actual en el almacenamiento de la session
       function setCurrentPlayer (player){
-        if(!($window.sessionStorage.hasOwnProperty("currentPlayer"))){
-
-          $window.sessionStorage.setItem("currentPlayer",JSON.stringify(player));
-        }
-        else{
-
-            $window.sessionStorage.currentPlayer = JSON.stringify(player);
-        }
-
+        _currentPlayer = player;
       };
       //obtengo el usuario actual en el almacenamiento de la session
       function getCurrentPlayer (player){
-        if($window.sessionStorage.hasOwnProperty("currentPlayer")){
-          return JSON.parse($window.sessionStorage.getItem("currentPlayer"))
-        }
-        else{
-          return null;
-        }
+        return _currentPlayer
       };
 
       function onDatabaseChange(change) {

@@ -1,62 +1,60 @@
-<!DOCTYPE html>
-<html>
-  <body ng-app="app" >
-    <ion-view ng-controller="EstadisticasController">
-      <ion-pane>
-        <ion-header-bar class="bar-stable">
-          <button class="button icon ion-navicon"></button>
-          <h1 class="title">Elegir jugador</h1>
-          <div class="buttons">
-            <button ng-click="showEditPlayerModal()" class="button button-icon icon ion-edit"></button>
-          </div>
-        </ion-header-bar>
-        <ion-content>
-          <div class="row responsive-sm">
-            <div class="col">
-              <div class="card">
-                <div class="item item-divider">
-                  Estad&iacute;sticas
-                </div>
-                <div class="item item-text-wrap">
-                  <ul class="list">
-                    <li class="item">
-                      Partidas ganadas:{{ganada}}
-                    </li>
-                    <li class="item">
-                      Partidas perdidas:{{perdida}}
-                    </li>
-                    <li class="item">
-                      Mejor materia:{{habilidad}}
-                    </li>
-                    <li class="item">
-                      Debilidad:{{debilidad}}
-                    </li>
-                    <li class="item">
-                      Tiempo promedio:{{tiempo}}
-                    </li>
-                  </ul>
 
-                    </div>
-                    <div class="item item-divider">
-                </div>
-              </div>
+<ion-view ng-controller="EstadisticasController">
+  <ion-pane>
+    <ion-header-bar class="bar-stable">
+      <button class="button icon ion-navicon"></button>
+      <h1 class="title">Estadisticas</h1>
+      <div class="buttons">
+        <button ng-click="showEditPlayerModal()" class="button button-icon icon ion-edit"></button>
+      </div>
+    </ion-header-bar>
+    <ion-content>
+      <div class="row responsive-sm">
+        <div class="col">
+          <div class="card">
+            <div class="item item-divider">
+              Estad&iacute;sticas
             </div>
-            <div class="col col-33 col-offset-33">
-                    <a href="#/ruleta">
-                        <button class="button button-balanced">¡Jugar!</button>
-                    </a>
+            <div class="item item-text-wrap">
+              <ul class="list">
+                <li class="item">
+                  Partidas ganadas:{{ganada}}
+                </li>
+                <li class="item">
+                  Partidas perdidas:{{perdida}}
+                </li>
+                <li class="item">
+                  Mejor materia:{{habilidad}}
+                </li>
+                <li class="item">
+                  Debilidad:{{debilidad}}
+                </li>
+                <li class="item">
+                  Tiempo promedio:{{tiempo}}
+                </li>
+              </ul>
 
             </div>
-          <div class="col">
-            <a ng-href="#/ruleta">Hume</a><br>
-            <a ng-href="#/pregunta">Jose y Luismi</a><br>
-            <a ng-href="#/final">Voluntario</a><br>
+            <div class="item item-divider">
+            </div>
           </div>
-          <br/><br/>
-         </div>
-        </ion-content>
-      </ion-pane>
-    </ion-view>
+        </div>
+        <div class="col col-33 col-offset-33">
+          <a ui-sref="ruleta">
+            <button class="button button-balanced">¡Jugar!</button>
+          </a>
+
+        </div>
+        <div class="col">
+          <a ui-sref="ruleta">Hume</a><br>
+          <a ui-sref="pregunta">Jose y Luismi</a><br>
+          <a ui-sref="final">Voluntario</a><br>
+        </div>
+        <br/><br/>
+      </div>
+    </ion-content>
+  </ion-pane>
+</ion-view>
 
     <script id="edit-player.html" type="text/ng-template">
       <ion-modal-view>
@@ -97,5 +95,3 @@
         </ion-content>
       </ion-modal-view>
     </script>
-  </body>
-</html>

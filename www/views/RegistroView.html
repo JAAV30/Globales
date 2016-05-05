@@ -1,63 +1,58 @@
-<!DOCTYPE html>
-<html>
-  <body ng-app="app">
-    <ion-view>
-     <ion-pane ng-controller="RegistroController">
-       <ion-header-bar class="bar-stable">
-         <h1 class="title">Elegir jugador</h1>
-         <div class="buttons">
-           <button ng-click="showAddPlayerModal()" class="button button-icon icon ion-android-add"></button>
-         </div>
-       </ion-header-bar>
-       <ion-content >
-           <ion-list>
-             <ion-item ng-repeat="p in players" ng-click="selectPlayer(p)">
-               <div style="float: left">{{ p.nickname }}</div>
-             </ion-item>
-           </ion-list>
-       </ion-content>
-     </ion-pane>
-   </ion-view>
+<ion-view>
+  <ion-pane ng-controller="RegistroController">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Elegir jugador</h1>
+      <div class="buttons">
+        <button ng-click="showAddPlayerModal()" class="button button-icon icon ion-android-add"></button>
+      </div>
+    </ion-header-bar>
+    <ion-content >
+      <ion-list>
+        <ion-item ng-repeat="p in players" ng-click="selectPlayer(p)">
+          <div style="float: left">{{ p.nickname }}</div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-pane>
+</ion-view>
 
-    <script id="add-or-edit-player.html" type="text/ng-template">
-      <ion-modal-view>
-        <ion-header-bar>
-          <h1 class="title">Jugador</h1>
-          <div class="buttons">
-          <button ng-hide="isAdd" ng-click="deletePlayer()" class="button button-icon icon ion-trash-a"></button>
-          </div>
-        </ion-header-bar>
-        <ion-content>
-          <div class="list list-inset">
-            <label class="item item-input">
-            <input type="text" placeholder="Name" ng-model="player.nickname">
-            </label>
-            <label class="item item-input item-select">
-              <div class="input-label">
-                Ciencia
-              </div>
-              <select ng-model="player.science">
-                <option>Biología</option>
-                <option selected>Física Matemática</option>
-                <option>Química</option>
-              </select>
-            </label>
-            <label class="item item-input item-select">
-            <div class="input-label">
-              Idioma
-            </div>
-            <select  ng-model="player.languaje">
-              <option>Inglés</option>
-              <option selected>Francés</option>
-            </select>
-          </label>
-          </div>
-          <div class="padding">
-            <button ng-click="savePlayer()" class="button button-block button-positive activated">Guardar</button>
-          </div>
-        </ion-content>
-      </ion-modal-view>
-    </script>
 
-  </body>
-</html>
+<script id="add-or-edit-player.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Jugador</h1>
+      <div class="buttons">
+        <button ng-hide="isAdd" ng-click="deletePlayer()" class="button button-icon icon ion-trash-a"></button>
+      </div>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" placeholder="Name" ng-model="player.nickname">
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Ciencia
+          </div>
+          <select ng-model="player.science">
+            <option>Biología</option>
+            <option selected>Física Matemática</option>
+            <option>Química</option>
+          </select>
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Idioma
+          </div>
+          <select  ng-model="player.languaje">
+            <option>Inglés</option>
+            <option selected>Francés</option>
+          </select>
+        </label>
+      </div>
+      <div class="padding">
+        <button ng-click="savePlayer()" class="button button-block button-positive activated">Guardar</button>
+      </div>
+    </ion-content>
+  </ion-modal-view>
+</script>

@@ -18,14 +18,18 @@ function InicioController($window,$scope,$ionicPlatform,$ionicLoading,$timeout,$
         })
       .then(service.get_ID_subject_difficult) // objengo todas las preguntas pero unicamente con el ID,MATERIA,DIFICULTAD
       .then(function(questions){
-
-        setTimeout(function(){ // despues de un segundo se oculta el loading
-          hide(); //oculta el Loading
-          $injector.get('$state').transitionTo('registro');
-        },1000);
         console.log("Now after sync, we got all the questions",questions.rows);
+
         $scope.$apply(function(){
-          $scope.questionsCollection = questions.rows;
+
+          setTimeout(function(){ // despues de un segundo se oculta el loading
+            hide(); //oculta el Loading
+            if(!service.getCurrentPlayer()){
+
+              $injector.get('$state').transitionTo('registro');
+            }
+
+          },1000);
         });
       })
 
