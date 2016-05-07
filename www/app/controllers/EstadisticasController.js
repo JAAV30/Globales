@@ -36,12 +36,12 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$injector,serv
       {
         key: "Juegos Ganados",
         y: 4,
-        color : "#D50000"
+        color:"#00C853"
       },
       {
         key: "Juegos Perdidos",
         y: 11,
-        color:"#00C853"
+        color : "#D50000"
       }
     ];
 
