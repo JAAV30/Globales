@@ -7,9 +7,9 @@ function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$injector,
       $scope.dueno="ZORRO";
   });
 
-  $scope.players = [{nickname:"jodafm",science:"Química",languaje:"Inglés"},
-                    {nickname:"player2",science:"Biología",languaje:"Inglés"},
-                    {nickname:"player3",science:"Química",languaje:"Francés"}];
+  $scope.players = [{nickname:"jodafm",science:"Química",language:"Inglés"},
+                    {nickname:"player2",science:"Biología",language:"Inglés"},
+                    {nickname:"player3",science:"Química",language:"Francés"}];
 
   $ionicModal.fromTemplateUrl('add-or-edit-player.html', {
 		scope: $scope,

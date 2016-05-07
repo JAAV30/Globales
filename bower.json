@@ -1,5 +1,6 @@
 {
-  "name": "HelloIonic",
+  "name": "graduados",
+  "directory": "www/app/lib",
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.3.0"
