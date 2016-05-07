@@ -9,48 +9,29 @@
       </div>
     </ion-header-bar>
     <ion-content>
-      <div class="row responsive-sm">
-        <div class="col">
-          <div class="card">
-            <div class="item item-divider">
-              Estad&iacute;sticas
-            </div>
-            <div class="item item-text-wrap">
-              <ul class="list">
-                <li class="item">
-                  Partidas ganadas:{{ganada}}
-                </li>
-                <li class="item">
-                  Partidas perdidas:{{perdida}}
-                </li>
-                <li class="item">
-                  Mejor materia:{{habilidad}}
-                </li>
-                <li class="item">
-                  Debilidad:{{debilidad}}
-                </li>
-                <li class="item">
-                  Tiempo promedio:{{tiempo}}
-                </li>
-              </ul>
-
-            </div>
-            <div class="item item-divider">
-            </div>
-          </div>
+      <div class="list card">
+        <div class="item item-avatar">
+          <img src="../app/img/avatar.svg">
+          <h2>{{currentPlayer.nickname}}</h2>
+          <p>Ciencia: {{currentPlayer.science}}</p>
+          <p>Idioma:  {{currentPlayer.language}}</p>
         </div>
+      </div>
+      <div class="item item-body">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+          <ion-slide>
+            <nvd3 options="chart1.options" data="chart1.data"></nvd3>
+          </ion-slide>
+          <ion-slide>
+            <nvd3 options="chart2.options" data="chart2.data"></nvd3>
+          </ion-slide>
+        </ion-slide-box>
+     </div>
+
+      <div class="row">
         <div class="col col-33 col-offset-33">
-          <a ui-sref="ruleta">
-            <button class="button button-balanced">¡Jugar!</button>
-          </a>
-
+          <button ng-click="play()" class="button icon-left ion-ios-game-controller-b button-positive">Jugar</button>
         </div>
-        <div class="col">
-          <a ui-sref="ruleta">Hume</a><br>
-          <a ui-sref="pregunta">Jose y Luismi</a><br>
-          <a ui-sref="final">Voluntario</a><br>
-        </div>
-        <br/><br/>
       </div>
     </ion-content>
   </ion-pane>
@@ -83,7 +64,7 @@
             <div class="input-label">
               Idioma
             </div>
-            <select  ng-model="currentPlayer.languaje">
+            <select  ng-model="currentPlayer.language">
               <option>Inglés</option>
               <option selected>Francés</option>
             </select>
