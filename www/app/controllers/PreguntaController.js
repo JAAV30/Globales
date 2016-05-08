@@ -1,6 +1,6 @@
-angular.module('app').controller('AppPregunta',['$scope','$ionicPlatform',AppPregunta]);
+angular.module('app').controller('AppPregunta',['$scope','$ionicPlatform','$ionicPopup','$injector','QuestionsService',AppPregunta]);
 
-function AppPregunta($scope,$ionicPlatform) {
+function AppPregunta($scope,$ionicPlatform,$ionicPopup,$injector,service) {
 
   $ionicPlatform.ready(function() {
 
@@ -11,57 +11,8 @@ function AppPregunta($scope,$ionicPlatform) {
       var analizado=false;
 
      //se carga de la base de datos
-     $scope.objeto={
-      header:"Considere el siguiente enunciado",
-      statement:"El área 'A' de la esfera en función de su radio 'r' esta dada por A(r) = 4πr²",
-      proporsals:[{header:"De acuerdo con el enunciado anterior, considere las siguientes proposiciones",
-      list:[
-      {opc:"r es una variable independiente."},
-      {opc:"El área de la esfera depende del radio"},
-    ]}],
-      question:"La diferencia entre dos números naturales es 9 y la suma de sus cuadrados es 725, entonces el número menor es",
-      answers:[
-        {a:"Ambas"},
-        {b:"Ninguna"},
-        {c:"Solo la I"},
-        {d:"Solo la II"}],
-      correctAnswer:0
-    }
-    var respuestaCorrecta=$scope.objeto.correctAnswer;
-    $scope.encabezado=$scope.objeto.header;
-    $scope.enunciado=$scope.objeto.statement;
-    $scope.imagen="img";
-    $scope.encabezadoProposiciones=$scope.objeto.proporsals[0].header;
-    $scope.listaProposiciones=$scope.objeto.proporsals[0].list;
-    $scope.cuerpoPregunta=$scope.objeto.question;
-    $scope.RespuestaA=$scope.objeto.answers[0];
-    $scope.RespuestaB=$scope.objeto.answers[1];
-    $scope.RespuestaC=$scope.objeto.answers[2];
-    $scope.RespuestaD=$scope.objeto.answers[3];
-    $scope.enunciado=createHTML();
-
-  function createHTML(){
-
-    var texto="";
-      if($scope.encabezado != null){
-        texto=texto+"<p>"+$scope.encabezado+"</p><br>";
-      }
-      if($scope.enunciado != null){
-        texto=texto+"<p>"+$scope.enunciado+"</p><br>";
-      }
-      if($scope.encabezadoProposiciones != null){
-        texto=texto+"<p>"+$scope.encabezadoProposiciones+"</p><br>";
-      }
-      if($scope.listaProposiciones.length > 0){
-        texto=texto+"<p><ol>";
-        for (var i = 0; i < $scope.listaProposiciones.length; i++) {
-          texto=texto+"<li>"+(i+1)+" "+$scope.listaProposiciones[i].opc+"</li>";
-        };
-        texto=texto+"</ol></p>";
-      }
-      console.log(texto);
-      return texto;
-  }
+     $scope.question = service.getLastQuestion();
+     console.log("Current question:", $scope.question);
 
 	$scope.colorClass=function(value){
   		if(analizado){
@@ -80,7 +31,57 @@ function AppPregunta($scope,$ionicPlatform) {
 		if(respuestaCorrecta == value){
 			showAlert();
 		}
-	}
+	};
+
+  function showMessage(title,message,cb) {
+   var alertPopup = $ionicPopup.alert({
+     title: title,
+     template: message
+   });
+
+   alertPopup.then(function(res) {
+     if(cb){
+       cb();
+     }
+   });
+  };
+
+  $scope.answerAction = function (e){
+    //blockButtons();
+    console.log("Answer selected",e);
+    console.log("Correct answers",$scope.question.structure.correctAnswer);
+    if($scope.question.structure.correctAnswer === e.toString()){
+      service.correctAnswerAction($scope.question);
+    }
+    else{
+      service.failAnswerAction($scope.question);
+    }
+
+    var action = service.continueAction();
+    console.log("ACTION",action);
+    if(action.finished){
+      if(action.status ==="WON"){
+        setTimeout(function(){
+          showMessage("¡Excelente!","Haz ganado el juego",function(){
+            $injector.get('$state').transitionTo('estadisticas');
+          });
+        },500);
+      }
+      else if(action.status ==="LOST"){
+        setTimeout(function(){
+          showMessage("¡Es una lástima!","Haz perdido el juego",function(){
+            $injector.get('$state').transitionTo('estadisticas');
+          });
+        },500);
+      }
+    }
+    else{
+       setTimeout(function(){
+          $injector.get('$state').transitionTo('ruleta');
+       },1000);
+    }
+
+  };
 
   });
 

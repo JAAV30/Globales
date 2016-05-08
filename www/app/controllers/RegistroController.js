@@ -39,7 +39,7 @@ function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$ionicPopu
        $scope.player.nickname.trim() &&
        $scope.player.science &&
        $scope.player.language){
-
+         $scope.player._id = $scope.player.nickname;
          showBusy();
          service.createPlayer($scope.player)
                 .then(
@@ -54,7 +54,7 @@ function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$ionicPopu
        }
 
        else{
-        showMessage("¡Error!","El jugador es invalido");
+        showMessage("¡Error!","El jugador es invalido",null);
        }
 
 
@@ -64,7 +64,7 @@ function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$ionicPopu
   $scope.deletePlayer = function() {
 		$scope.modal.hide();
 	};
-  
+
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
@@ -90,12 +90,17 @@ function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$ionicPopu
     $ionicLoading.hide();
   };
 
-  function showMessage(title,message) {
+  function showMessage(title,message,cb) {
    var alertPopup = $ionicPopup.alert({
      title: title,
      template: message
    });
 
+   alertPopup.then(function(res) {
+     if(cb){
+       cb();
+     }
+   });
   };
 
   $scope.closeModal=function(){

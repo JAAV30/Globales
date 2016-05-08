@@ -1,8 +1,11 @@
-angular.module('app').controller('RuletaController',['$scope','$ionicPlatform','$injector','$ionicModal',RuletaController]);
+angular.module('app').controller('RuletaController',['$scope','$ionicPlatform','$injector','$ionicModal','QuestionsService',RuletaController]);
 
-function RuletaController($scope,$ionicPlatform,$injector,$ionicModal) {
+function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service) {
 	var src = '../app/img/myniggasong.mp3';
-    var media = null;
+  var media = null;
+	var currentSubject = null;
+  var materia = "";
+
 	$scope.play = function() {
 		if (media == null) {
             media = $cordovaMedia.newMedia(src, null, null, mediaStatusCallback);
@@ -15,12 +18,14 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal) {
     }).then(function(modal) {
       $scope.modal = modal;
     });
+		$scope.currentPlayer = service.getCurrentPlayer();
     $scope.openModal = function() {
       $scope.modal.show();
     };
     $scope.closeModal = function() {
       $scope.modal.hide();
-	  $injector.get('$state').transitionTo('pregunta');
+	  	$injector.get('$state').transitionTo('pregunta');
+
     };
     $scope.$on('$destroy', function() {
       $scope.modal.remove();
@@ -29,39 +34,37 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal) {
     });
     $scope.$on('modal.removed', function() {
     });
-	var materiaa = ""
+
     $scope.$on('modal.shown', function() {
-      console.log(materiaa);
+      console.log(materia);
     });
     $scope.imageSrc = '../app/img/josue.jpg';
-	
-    $scope.showImage = function(index, materia) {
-		switch(index) {
-			case 1:
-				$scope.imageSrc = '../app/img/josue.jpg';
+
+    $scope.showImage = function(materia) {
+
+		switch(materia) {
+			case "Matematica":
+				$scope.imageSrc = '../app/img/avatar.svg';
 				break;
-			case 2:
-				break;
-			case 3:
-				break;
-		} 
+			default :
+				$scope.imageSrc = '../app/img/ionic.png';
+		}
 		$scope.openModal();
     }
   //}
-	
+
 	var wierd_modal = function(txt_field, materia){
-			materiaa = materia
-            //txt_field.text = materia;
-			$scope.showImage(1, materia);
+			$scope.showImage(materia);
 	}
   $ionicPlatform.ready(function() {
 
       console.log("Ready RuletaController");
-      $scope.dueno="Humesito trabajando aquí!";
-      loadPhaserSettings();
+      loadPhaserSettings(service);
   });
 
   function loadPhaserSettings(service){
+		var language = $scope.currentPlayer.language;
+		var  science= $scope.currentPlayer.science;
     var s = service;
     console.log("Drawing ....");
     // the game itself
@@ -73,7 +76,7 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal) {
     // slices (prizes) placed in the wheel
     var slices = 6;
     // prize names, starting from 12 o'clock going clockwise
-    var slicePrizes = ["Estudios Sociales","Ciencia", "Matemáticas","Cívica","Español", "Idioma"];
+    var slicePrizes = ["Estudios Sociales",science, "Matemáticas","Cívica","Español", language];
     // the prize you are about to win
     var prize;
     // text field where to show the prize
@@ -149,11 +152,14 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal) {
               // now we can spin the wheel again
               canSpin = true;
               // writing the prize you just won
-			  wierd_modal(prizeText, slicePrizes[prize])
+							var subject = slicePrizes[prize];
               //prizeText.text = slicePrizes[prize];
               //$injector.get('$state').transitionTo('pregunta');
-
-
+							s.prepareQuestion(subject,"H")
+										 .then(function(response){
+											 console.log("Response: ",response);
+											 wierd_modal(prizeText, subject);
+										 });
          }
       }
 

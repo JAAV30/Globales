@@ -11,17 +11,6 @@ function InicioController($window,$scope,$ionicPlatform,$ionicLoading,$timeout,$
       .then(
         function(dataSync){
           console.log("Success replicating", dataSync);
-        })
-      .catch(
-        function(error){
-          console.log("An error occurred when replicating", error);
-        })
-      .then(service.get_ID_subject_difficult) // objengo todas las preguntas pero unicamente con el ID,MATERIA,DIFICULTAD
-      .then(function(questions){
-        console.log("Now after sync, we got all the questions",questions.rows);
-
-        $scope.$apply(function(){
-
           setTimeout(function(){ // despues de un segundo se oculta el loading
             hide(); //oculta el Loading
             if(!service.getCurrentPlayer()){
@@ -30,9 +19,12 @@ function InicioController($window,$scope,$ionicPlatform,$ionicLoading,$timeout,$
             }
 
           },1000);
-        });
-      })
-
+        })
+      .catch(
+        function(error){
+          console.log("An error occurred when replicating", error);
+        })
+      .then(service.getQuestions);
       function show() {
         $ionicLoading.show({
           //duration: 50000,

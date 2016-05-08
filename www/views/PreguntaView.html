@@ -6,23 +6,25 @@
     <ion-content ng-controller="AppPregunta">
 
       <div>
-        <p ng-bind-html="enunciado"></p>
-        <p>{{cuerpoPregunta}}</p>
+        <p>{{question.structure.header}}</p>
+        <br>
+        <p>{{question.structure.proporsals.header}}</p>
+        <br>
+        <ol>
+          <li ng-repeat="p in question.proporsals.list ">{{p}}</li>
+        </ol>
+        <br>
+        <p>{{question.structure.statement}}</p>
+        <br>
+        <p>{{question.structure.question}}</p>
+        <br>
+        <button
+          ng-repeat="(key,value) in question.structure.answers"
+          class="button button-full button-positive"
+          ng-attr-id="{{key}}"
+          ng-click="answerAction(key)">{{value}}</button>
       </div>
-      <div>
-        <button class="{{colorClass(0)}}" ng-click="checkAnswer(0)">
-          {{RespuestaA.a}}
-        </button>
-        <button class="{{colorClass(1)}}" ng-click="checkAnswer(1)">
-          {{RespuestaB.b}}
-        </button>
-        <button class="{{colorClass(2)}}" ng-click="checkAnswer(2)">
-          {{RespuestaC.c}}
-        </button>
-        <button class="{{colorClass(3)}}" ng-click="checkAnswer(3)">
-          {{RespuestaD.d}}
-        </button>
-      </div>
+
     </ion-content>
   </ion-pane>
 </ion-view>

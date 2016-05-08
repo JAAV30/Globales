@@ -139,7 +139,12 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$injector,serv
     $scope.play = function(){
 
       //construyo las preguntas para alistar el juego....
-      $injector.get('$state').transitionTo('ruleta');
+      service.prepareToPlay()
+             .then(function(response){
+               console.log("Prepare to play",response);
+                $injector.get('$state').transitionTo('ruleta');
+             });
+
     }
 
     $scope.currentPlayer = service.getCurrentPlayer();
