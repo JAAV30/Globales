@@ -7,16 +7,18 @@ function AppPregunta($scope,$ionicPlatform,$ionicPopup,$injector,service) {
       console.log("Ready AppPregunta");
       //$scope.dueno="LuisMi y yo trabajamos aqui, mensaje por medio de scope de angular";
       $scope.buttonColor="button button-block button-positive";
-      var respuestaCorrecta=3;
+
       var analizado=false;
 
      //se carga de la base de datos
      $scope.question = service.getLastQuestion();
+     var respuestaCorrecta;
+     var seleccionado;
      console.log("Current question:", $scope.question);
 
-	$scope.colorClass=function(value){
+	$scope.colorClass=function(key){
   		if(analizado){
-  			if(value==respuestaCorrecta){
+  			if(key==respuestaCorrecta){
   				return "button button-block button-balanced";
   			}
   			else {
@@ -26,11 +28,9 @@ function AppPregunta($scope,$ionicPlatform,$ionicPopup,$injector,service) {
   		return "button button-block button-positive";
   	}
 
-  $scope.checkAnswer=function(value){
+  $scope.checkAnswer=function(key){
 		analizado=true;
-		if(respuestaCorrecta == value){
-			showAlert();
-		}
+		$scope.colorClass(key);
 	};
 
   function showMessage(title,message,cb) {
@@ -49,7 +49,10 @@ function AppPregunta($scope,$ionicPlatform,$ionicPopup,$injector,service) {
   $scope.answerAction = function (e){
     //blockButtons();
     console.log("Answer selected",e);
-    console.log("Correct answers",$scope.question.structure.correctAnswer);
+    console.log("Correct answer",$scope.question.structure.correctAnswer);
+    respuestaCorrecta=$scope.question.structure.correctAnswer;
+    seleccionado=e.toString();
+    $scope.checkAnswer(e);
     if($scope.question.structure.correctAnswer === e.toString()){
       service.correctAnswerAction($scope.question);
     }

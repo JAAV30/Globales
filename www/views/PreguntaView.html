@@ -20,7 +20,7 @@
         <br>
         <button
           ng-repeat="(key,value) in question.structure.answers"
-          class="button button-full button-positive"
+          class={{colorClass(key)}}
           ng-attr-id="{{key}}"
           ng-click="answerAction(key)">{{value}}</button>
       </div>
