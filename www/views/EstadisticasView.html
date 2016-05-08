@@ -5,7 +5,7 @@
       <button class="button icon ion-navicon"></button>
       <h1 class="title">Estadisticas</h1>
       <div class="buttons">
-        <button ng-click="showEditPlayerModal()" class="button button-icon icon ion-edit"></button>
+        <button ng-click="showEditPlayerModal(currentPlayer)" class="button button-icon icon ion-edit"></button>
       </div>
     </ion-header-bar>
     <ion-content>
@@ -71,7 +71,7 @@
           </label>
           </div>
           <div class="padding">
-            <button ng-click="savePlayer()" class="button button-block button-positive activated">Guardar</button>
+            <button ng-click="editPlayer()" class="button button-block button-positive activated">Guardar</button>
           </div>
         </ion-content>
       </ion-modal-view>

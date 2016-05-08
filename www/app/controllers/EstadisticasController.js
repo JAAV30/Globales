@@ -1,6 +1,6 @@
-angular.module('app').controller('EstadisticasController',['$scope','$ionicPlatform','$ionicModal','$injector','QuestionsService',EstadisticasController]);
+angular.module('app').controller('EstadisticasController',['$scope','$ionicPlatform','$ionicModal','$ionicPopup','$ionicLoading','$injector','QuestionsService',EstadisticasController]);
 
-function EstadisticasController($scope,$ionicPlatform,$ionicModal,$injector,service) {
+function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$ionicLoading,$injector,service) {
 
   $ionicPlatform.ready(function() {
 
@@ -157,16 +157,63 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$injector,serv
     $scope.modal = modal;
   });
 
-  $scope.showEditPlayerModal = function() {
+  $scope.showEditPlayerModal = function(player) {
+    $scope.player = player;
     $scope.action = 'Edit';
     $scope.isAdd = false;
     $scope.modal.show();
   };
 
-  $scope.savePlayer = function() {
-
-    $scope.modal.hide();
+  function showBusy() {
+    $ionicLoading.show({
+      //duration: 50000,
+      noBackdrop: true,
+      template: '<p class="item-icon-left">Saving player...<ion-spinner icon="lines"/></p>'
+    });
+    //hide();
   };
+
+  function hideBusy(){
+    $ionicLoading.hide();
+  };
+
+  function showMessage(title,message,cb) {
+   var alertPopup = $ionicPopup.alert({
+     title: title,
+     template: message
+   });
+
+   alertPopup.then(function(res) {
+     if(cb){
+       cb();
+     }
+   });
+  };
+
+  $scope.editPlayer = function() {
+    if($scope.player.nickname &&
+       $scope.player.nickname.trim() &&
+       $scope.player.science &&
+       $scope.player.language){
+         $scope.player._id = $scope.player.nickname;
+         showBusy();
+         service.updataPlayer($scope.player)
+                .then(
+                  function(){
+                    $scope.modal.hide();
+                    hideBusy();
+                  },
+                  function(){
+                    $scope.modal.hide();
+                    hideBusy();
+                  });
+       }
+
+       else{
+        showMessage("¡Error!","El jugador es invalido",null);
+       }
+  };
+
 
   $scope.deletePlayer = function() {
     $scope.modal.hide();
@@ -175,6 +222,5 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$injector,serv
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
-
 
 }
