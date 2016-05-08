@@ -17,12 +17,12 @@
 </ion-view>
 
 
-<script id="add-or-edit-player.html" type="text/ng-template">
+<script id="add-player.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar>
-      <h1 class="title">Jugador</h1>
+      <button ng-click="closeModal()" class="button icon ion-android-arrow-back"></button>
+      <h1 class="title">Creando jugador</h1>
       <div class="buttons">
-        <button ng-hide="isAdd" ng-click="deletePlayer()" class="button button-icon icon ion-trash-a"></button>
       </div>
     </ion-header-bar>
     <ion-content>

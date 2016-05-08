@@ -1,17 +1,18 @@
-angular.module('app').controller('RegistroController',['$window','$scope','$ionicPlatform','$ionicModal','$injector','QuestionsService',RegistroController]);
-function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$injector,service) {
+angular.module('app').controller('RegistroController',['$window','$scope','$ionicPlatform','$ionicModal','$ionicPopup','$ionicLoading','$injector','QuestionsService',RegistroController]);
+
+function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$ionicPopup,$ionicLoading,$injector,service) {
 
   $ionicPlatform.ready(function() {
 
       console.log("Ready RegistroController");
-      $scope.dueno="ZORRO";
+      service.getPlayers()
+             .then(function(players){
+                console.log("Players",players);
+                $scope.players = players;
+             });
   });
 
-  $scope.players = [{nickname:"jodafm",science:"Química",language:"Inglés"},
-                    {nickname:"player2",science:"Biología",language:"Inglés"},
-                    {nickname:"player3",science:"Química",language:"Francés"}];
-
-  $ionicModal.fromTemplateUrl('add-or-edit-player.html', {
+  $ionicModal.fromTemplateUrl('add-player.html', {
 		scope: $scope,
 		animation: 'slide-in-up'
 	}).then(function(modal) {
@@ -34,14 +35,36 @@ function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$injector,
 	};
 
   $scope.savePlayer = function() {
+    if($scope.player.nickname &&
+       $scope.player.nickname.trim() &&
+       $scope.player.science &&
+       $scope.player.language){
 
-		$scope.modal.hide();
+         showBusy();
+         service.createPlayer($scope.player)
+                .then(
+                  function(){
+                    $scope.modal.hide();
+                    hideBusy();
+                  },
+                  function(){
+                    $scope.modal.hide();
+                    hideBusy();
+                  });
+       }
+
+       else{
+        showMessage("¡Error!","El jugador es invalido");
+       }
+
+
+
 	};
 
   $scope.deletePlayer = function() {
 		$scope.modal.hide();
 	};
-
+  
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
@@ -51,6 +74,31 @@ function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$injector,
     console.log("Selected player", player);
     service.setCurrentPlayer(player);
     $injector.get('$state').transitionTo('estadisticas');
-  }
 
+  };
+
+  function showBusy() {
+    $ionicLoading.show({
+      //duration: 50000,
+      noBackdrop: true,
+      template: '<p class="item-icon-left">Saving player...<ion-spinner icon="lines"/></p>'
+    });
+    //hide();
+  };
+
+  function hideBusy(){
+    $ionicLoading.hide();
+  };
+
+  function showMessage(title,message) {
+   var alertPopup = $ionicPopup.alert({
+     title: title,
+     template: message
+   });
+
+  };
+
+  $scope.closeModal=function(){
+    $scope.modal.hide();
+  }
 }
