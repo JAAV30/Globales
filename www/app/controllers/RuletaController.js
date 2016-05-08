@@ -1,7 +1,59 @@
-angular.module('app').controller('RuletaController',['$scope','$ionicPlatform','$injector',RuletaController]);
+angular.module('app').controller('RuletaController',['$scope','$ionicPlatform','$injector','$ionicModal',RuletaController]);
 
-function RuletaController($scope,$ionicPlatform,$injector) {
-
+function RuletaController($scope,$ionicPlatform,$injector,$ionicModal) {
+	var src = '../app/img/myniggasong.mp3';
+    var media = null;
+	$scope.play = function() {
+		if (media == null) {
+            media = $cordovaMedia.newMedia(src, null, null, mediaStatusCallback);
+        }
+		media.play();
+	};
+    $ionicModal.fromTemplateUrl('modal', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.openModal = function() {
+      $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+	  $injector.get('$state').transitionTo('pregunta');
+    };
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
+    $scope.$on('modal.hide', function() {
+    });
+    $scope.$on('modal.removed', function() {
+    });
+	var materiaa = ""
+    $scope.$on('modal.shown', function() {
+      console.log(materiaa);
+    });
+    $scope.imageSrc = '../app/img/josue.jpg';
+	
+    $scope.showImage = function(index, materia) {
+		switch(index) {
+			case 1:
+				$scope.imageSrc = '../app/img/josue.jpg';
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+		} 
+		$scope.openModal();
+    }
+  //}
+	
+	var wierd_modal = function(txt_field, materia){
+			materiaa = materia
+            //txt_field.text = materia;
+			$scope.showImage(1, materia);
+	}
   $ionicPlatform.ready(function() {
 
       console.log("Ready RuletaController");
@@ -27,20 +79,6 @@ function RuletaController($scope,$ionicPlatform,$injector) {
     // text field where to show the prize
     var prizeText;
     // PLAYGAME STATE
-	var wierd_modal = function(txt_field, materia){
-            txt_field.text = materia;
-			var modal = document.getElementById('myModal');
-			var canvas = document.getElementById('workspace');
-			var img = document.getElementById('myImg');
-			var modalImg = document.getElementById("img01");
-			var captionText = document.getElementById("caption");
-			//canvas.style.display = "none";
-			captionText.innerHTML = materia;
-			var span = document.getElementsByClassName("close")[0];
-			span.onclick = function() {
-				modal.style.display = "none";
-			}
-	}
     var playGame = function(game){};
     playGame.prototype = {
          // function to be executed once the state preloads
@@ -111,8 +149,9 @@ function RuletaController($scope,$ionicPlatform,$injector) {
               // now we can spin the wheel again
               canSpin = true;
               // writing the prize you just won
-              prizeText.text = slicePrizes[prize];
-              $injector.get('$state').transitionTo('pregunta');
+			  wierd_modal(prizeText, slicePrizes[prize])
+              //prizeText.text = slicePrizes[prize];
+              //$injector.get('$state').transitionTo('pregunta');
 
 
          }
