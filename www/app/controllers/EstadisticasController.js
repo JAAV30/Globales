@@ -5,6 +5,7 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
   $ionicPlatform.ready(function() {
 
     console.log("Ready EstadisticasController");
+    $scope.statusNickname = false;
     $scope.currentPlayer = service.getCurrentPlayer();
     $scope.dueno="Josue trabaje aqui, mensaje por medio de scope de angular";
     $scope.ganada=" 17";
