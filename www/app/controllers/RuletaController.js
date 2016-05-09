@@ -76,7 +76,7 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service) {
     // slices (prizes) placed in the wheel
     var slices = 6;
     // prize names, starting from 12 o'clock going clockwise
-    var slicePrizes = ["Estudios Sociales",science, "Matemáticas","Cívica","Español", language];
+    var slicePrizes = ["Estudios Sociales",science, "Matemática","Cívica","Español", language];
     // the prize you are about to win
     var prize;
     // text field where to show the prize
