@@ -5,17 +5,8 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
   $ionicPlatform.ready(function() {
 
     console.log("Ready EstadisticasController");
-    $scope.statusNickname = false;
-    $scope.currentPlayer = service.getCurrentPlayer();
-    $scope.dueno="Josue trabaje aqui, mensaje por medio de scope de angular";
-    $scope.ganada=" 17";
-    $scope.perdida=" 6";
-    $scope.habilidad=" Ingles";
-    $scope.debilidad=" Matemáticas";
-    $scope.tiempo=" 40:30";
-    $scope.chart1 = {};
-    $scope.chart2 = {};
-    $scope.chart1.options = {
+
+    $scope.options1 = {
       chart: {
         type: 'pieChart',
         height: 250,
@@ -33,7 +24,7 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
       }
     };
 
-    $scope.chart1.data = [
+    $scope.data1 = [
       {
         key: "Juegos Ganados",
         y: 4,
@@ -46,7 +37,7 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
       }
     ];
 
-    $scope.chart2.options = {
+    $scope.options2 = {
       chart: {
         type: 'multiBarHorizontalChart',
         height: 260,
@@ -74,7 +65,7 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
       }
     };
 
-    $scope.chart2.data = [
+    $scope.data2 = [
       {
         key: 'Acertadas',
         color:"#00C853",
@@ -137,19 +128,18 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
       }
     ];
 
-    $scope.play = function(){
-
-      //construyo las preguntas para alistar el juego....
-      service.prepareToPlay()
-             .then(function(response){
-               console.log("Prepare to play",response);
-                $injector.get('$state').transitionTo('ruleta');
-             });
-
-    }
-
     $scope.currentPlayer = service.getCurrentPlayer();
   });
+  $scope.play = function(){
+
+    //construyo las preguntas para alistar el juego....
+    service.prepareToPlay()
+           .then(function(response){
+             console.log("Prepare to play",response);
+              $injector.get('$state').go('ruleta');
+           });
+
+  }
 
   $ionicModal.fromTemplateUrl('edit-player.html', {
     scope: $scope,

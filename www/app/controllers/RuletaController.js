@@ -24,7 +24,7 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service) {
     };
     $scope.closeModal = function() {
       $scope.modal.hide();
-	  	$injector.get('$state').transitionTo('pregunta');
+	  	$injector.get('$state').go('pregunta');
 
     };
     $scope.$on('$destroy', function() {

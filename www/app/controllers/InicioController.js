@@ -15,7 +15,7 @@ function InicioController($window,$scope,$ionicPlatform,$ionicLoading,$timeout,$
             hide(); //oculta el Loading
             if(!service.getCurrentPlayer()){
 
-              $injector.get('$state').transitionTo('registro');
+              $injector.get('$state').go('registro');
             }
 
           },1000);

@@ -73,7 +73,7 @@ function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$ionicPopu
 
     console.log("Selected player", player);
     service.setCurrentPlayer(player);
-    $injector.get('$state').transitionTo('estadisticas');
+    $injector.get('$state').go('estadisticas');
 
   };
 

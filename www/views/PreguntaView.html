@@ -20,7 +20,7 @@
         <br>
         <button
           ng-repeat="(key,value) in question.structure.answers"
-          class={{colorClass(key)}}
+          ng-class="!answered ? 'button button-block button-positive' : (question.structure.correctAnswer == {{key}} ? 'button button-block button-balanced' : 'button button-block button-assertive' )"
           ng-attr-id="{{key}}"
           ng-click="answerAction(key)">{{value}}
         </button>
