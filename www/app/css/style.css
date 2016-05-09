@@ -12,3 +12,9 @@
   stroke: #999;
   fill: #999;
 }
+
+
+.hideEle {
+
+  display: none;
+}

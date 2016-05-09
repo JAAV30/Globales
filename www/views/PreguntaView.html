@@ -6,23 +6,24 @@
     <ion-content ng-controller="AppPregunta">
 
       <div>
-        <p>{{question.structure.header}}</p>
-        <br>
-        <p>{{question.structure.proporsals.header}}</p>
-        <br>
-        <ol>
+        <p ng-show="question.structure.header " class="ng-hide">{{question.structure.header}}</p>
+        <br ng-show="question.structure.header" class="ng-hide">
+        <p ng-show="question.structure.proporsals.header" class="ng-hide">{{question.structure.proporsals.header}}</p>
+        <br ng-show="question.structure.proporsals.header" class="ng-hide">
+        <ol ng-show="question.proporsals.list" class="ng-hide">
           <li ng-repeat="p in question.proporsals.list ">{{p}}</li>
         </ol>
-        <br>
-        <p>{{question.structure.statement}}</p>
-        <br>
-        <p>{{question.structure.question}}</p>
+        <br ng-show="question.proporsals.list" class="ng-hide">
+        <p ng-show="question.structure.statement" class="ng-hide">{{question.structure.statement}}</p>
+        <br ng-show="question.structure.statement" class="ng-hide">
+        <p >{{question.structure.question}}</p>
         <br>
         <button
           ng-repeat="(key,value) in question.structure.answers"
           class={{colorClass(key)}}
           ng-attr-id="{{key}}"
-          ng-click="answerAction(key)">{{value}}</button>
+          ng-click="answerAction(key)">{{value}}
+        </button>
       </div>
 
     </ion-content>
