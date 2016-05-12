@@ -48,5 +48,9 @@ angular.module('app', ['ionic','nvd3'])
   .state('final', {
     url: '/final',
     templateUrl: 'views/Final_JuegoView.html'
+  })
+  .state('errorData', {
+    url: '/errorData',
+    templateUrl: 'views/ErrorData.html'
   });
 });

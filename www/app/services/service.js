@@ -59,6 +59,7 @@
           //metodos públicos que se van a exponer
           initDBs : initDBs,
           //questions operations
+          getQuestions :get_ID_subject_difficult,
           syncDB : syncDB,
           prepareQuestion : prepareQuestion,
           getLastQuestion : getLastQuestion,

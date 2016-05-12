@@ -1,7 +1,7 @@
 angular.module('app').controller('RuletaController',['$scope','$ionicPlatform','$injector','$ionicModal','QuestionsService',RuletaController]);
 
 function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service) {
-	var src = '../app/img/myniggasong.mp3';
+	var src = 'app/img/myniggasong.mp3';
   var media = null;
 	var currentSubject = null;
   var materia = "";
@@ -38,16 +38,16 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service) {
     $scope.$on('modal.shown', function() {
       console.log(materia);
     });
-    $scope.imageSrc = '../app/img/josue.jpg';
+    $scope.imageSrc = 'app/img/josue.jpg';
 
     $scope.showImage = function(materia) {
 
 		switch(materia) {
 			case "Matematica":
-				$scope.imageSrc = '../app/img/avatar.svg';
+				$scope.imageSrc = 'app/img/avatar.svg';
 				break;
 			default :
-				$scope.imageSrc = '../app/img/ionic.png';
+				$scope.imageSrc = 'app/img/ionic.png';
 		}
 		$scope.openModal();
     }
@@ -89,8 +89,8 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service) {
               // preloading graphic assets
               console.log("Loading ....");
               game.load.crossOrigin =  'anonymous' ;
-              game.load.image("wheel", "../app/img/wheel.png");
-              game.load.image("pin", "../app/img/pin.png");
+              game.load.image("wheel", "app/img/wheel.png");
+              game.load.image("pin", "app/img/pin.png");
          },
          // funtion to be executed when the state is created
         create: function(){

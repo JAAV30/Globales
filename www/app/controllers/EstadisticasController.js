@@ -129,6 +129,7 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
     ];
 
     $scope.currentPlayer = service.getCurrentPlayer();
+
   });
   $scope.play = function(){
 

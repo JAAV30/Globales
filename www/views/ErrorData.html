@@ -1,0 +1,26 @@
+<ion-view ng-controller="ErrorDataController">
+  <ion-pane>
+    <div class="bar bar-header bar-assertive">
+      <h1 class="title">¡Sin datos!</h1>
+    </div>
+    <ion-content class="padding-top">
+      <div class="list card">
+
+        <div class="card">
+        <div class="item item-text-wrap">
+            No fue posible descargar los datos iniciales para iniciar la aplicacion, intente de nuevo.
+        </div>
+      </div>
+        <div class="item item-image">
+          <img src="app/img/error.svg">
+        </div>
+
+        <button ng-click="syncDB()" class="button button-block button-positive">
+          ¡Sincronizar!
+        </button>
+
+      </div>
+
+    </ion-content>
+  </ion-pane>
+</ion-view>
