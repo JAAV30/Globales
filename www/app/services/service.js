@@ -40,7 +40,8 @@
             header:"Lea la siguiente pregunta",
             question: "Quien es el mas culiolo del equipo?",
             answers : ["Luismi","Roco","Josue","Hume"],
-            correctAnswer : 2
+            correctAnswer : 2,
+            subject:"Civica"
           }
       }
       //game variable
@@ -63,6 +64,7 @@
           syncDB : syncDB,
           prepareQuestion : prepareQuestion,
           getLastQuestion : getLastQuestion,
+          getInfoGame : getInfoGame,
 
           // app operations
           createPlayer: createPlayer,
@@ -128,7 +130,7 @@
       };
 
       function getLastQuestion (){
-        return _lastQuestion
+        return _lastQuestion;
       }
       //*************************DB APP operations***************************
       function getPlayers() {
@@ -178,8 +180,12 @@
         _currentPlayer = player;
       };
       //obtengo el usuario actual en el almacenamiento de la session
-      function getCurrentPlayer (player){
-        return _currentPlayer
+      function getCurrentPlayer (){
+        return _currentPlayer;
+      };
+
+      function getInfoGame(){
+        return infoGame;
       };
 
       function onDatabaseChange(change) {
@@ -347,7 +353,14 @@
 
         turn = 0;
         num_lives = 3;
-        infoGame = [];
+        infoGame ={
+          Matemática:{"correctas":0, "incorrectas":0},
+          Español:{"correctas":0, "incorrectas":0},
+          Ciencia:{"correctas":0, "incorrectas":0},
+          Idioma:{"correctas":0, "incorrectas":0},
+          Cívica:{"correctas":0, "incorrectas":0},
+          Estudios:{"correctas":0, "incorrectas":0}
+        };
       };
 
       function prepareToPlay (){
@@ -472,44 +485,33 @@
 
       function correctAnswerAction(question){
         console.log("SUCCESS!");
-        var subject = question.subject;
-        if(infoGame.success){
-          infoGame.success = infoGame.success + 1;
+        var subject = _lastQuestion.subject;//question.subject;
+        if(subject == "Química" || subject == "Biología"|| subject == "Física Matemática"){
+          subject="Ciencia";
         }
-        else{
-          infoGame.success = 1;
+        else if(subject == "Inglés" || subject == "Francés"){
+          subject="Idioma";
         }
-        if(infoGame[subject] && infoGame[subject].success){
-          infoGame[subject].success  = infoGame[subject].success + 1;
+        else if(subject == "Estudios Sociales"){
+          subject="Estudios";
         }
-        else{
-          if(!infoGame[subject]){
-            infoGame[subject] = {};
-          }
-
-          infoGame[subject].success = 1;
-        }
+        infoGame[subject].correctas=infoGame[subject].correctas+1;
 
       };
 
       function failAnswerAction(question){
         console.log("FAIL!");
-        var subject = question.subject;
-        if(infoGame.fail){
-          infoGame.fail = infoGame.fail + 1;
+        var subject = _lastQuestion.subject;//question.subject;
+        if(subject == "Química" || subject == "Biología"|| subject == "Física Matemática"){
+          subject="Ciencia";
         }
-        else{
-          infoGame.fail = 1;
+        else if(subject == "Inglés" || subject == "Francés"){
+          subject="Idioma";
         }
-        if(infoGame[subject] && infoGame[subject].fail){
-          infoGame[subject].fail  = infoGame[subject].fail + 1;
+        else if(subject == "Estudios Sociales"){
+          subject="Estudios";
         }
-        else{
-          if(!infoGame[subject]){
-            infoGame[subject] = {};
-          }
-          infoGame[subject].fail = 1;
-        }
+        infoGame[subject].incorrectas=infoGame[subject].incorrectas+1;
         num_lives = num_lives - 1;
       };
 

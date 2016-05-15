@@ -9,7 +9,6 @@ function AppPregunta($scope,$ionicPlatform,$ionicPopup,$injector,service) {
       $scope.answered = false;
      //se carga de la base de datos
      $scope.question = service.getLastQuestion();
-     var seleccionado;
      console.log("Current question:", $scope.question);
 
 
@@ -38,6 +37,27 @@ function AppPregunta($scope,$ionicPlatform,$ionicPopup,$injector,service) {
     var action = service.continueAction();
     console.log("ACTION",action);
     if(action.finished){
+      service.getCurrentPlayer().statistics.Matemática.correctas=service.getCurrentPlayer().statistics.Matemática.correctas+service.getInfoGame().Matemática.correctas;
+      service.getCurrentPlayer().statistics.Matemática.incorrectas=service.getCurrentPlayer().statistics.Matemática.incorrectas+service.getInfoGame().Matemática.incorrectas;
+
+      service.getCurrentPlayer().statistics.Español.correctas=service.getCurrentPlayer().statistics.Español.correctas+service.getInfoGame().Español.correctas;
+      service.getCurrentPlayer().statistics.Español.incorrectas=service.getCurrentPlayer().statistics.Español.incorrectas+service.getInfoGame().Español.incorrectas;
+
+      service.getCurrentPlayer().statistics.Idioma.correctas=service.getCurrentPlayer().statistics.Idioma.correctas+service.getInfoGame().Idioma.correctas;
+      service.getCurrentPlayer().statistics.Idioma.incorrectas=service.getCurrentPlayer().statistics.Idioma.incorrectas+service.getInfoGame().Idioma.incorrectas;
+
+      service.getCurrentPlayer().statistics.Estudios.correctas=service.getCurrentPlayer().statistics.Estudios.correctas+service.getInfoGame().Estudios.correctas;
+      service.getCurrentPlayer().statistics.Estudios.incorrectas=service.getCurrentPlayer().statistics.Estudios.incorrectas+service.getInfoGame().Estudios.incorrectas;
+
+      service.getCurrentPlayer().statistics.Cívica.correctas=service.getCurrentPlayer().statistics.Cívica.correctas+service.getInfoGame().Cívica.correctas;
+      service.getCurrentPlayer().statistics.Cívica.incorrectas=service.getCurrentPlayer().statistics.Cívica.incorrectas+service.getInfoGame().Cívica.incorrectas;
+
+      service.getCurrentPlayer().statistics.Ciencia.correctas=service.getCurrentPlayer().statistics.Ciencia.correctas+service.getInfoGame().Ciencia.correctas;
+      service.getCurrentPlayer().statistics.Ciencia.incorrectas=service.getCurrentPlayer().statistics.Ciencia.incorrectas+service.getInfoGame().Ciencia.incorrectas;
+
+      service.updataPlayer(service.getCurrentPlayer());
+      console.log(service.getCurrentPlayer());
+      console.log(service.getInfoGame());
       if(action.status ==="WON"){
         setTimeout(function(){
           showMessage("¡Excelente!","Haz ganado el juego",function(){
