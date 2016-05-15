@@ -37,9 +37,9 @@
 
           structure : {
 
-            header:"Lea lo siguiente",
-            question: "Esto es una pregunta de prueba, la respuesta correcta es la C.",
-            answers : ["C#","JAVA","JAVASCRIPT","C++"],
+            header:"Lea la siguiente pregunta",
+            question: "Quien es el mas culiolo del equipo?",
+            answers : ["Luismi","Roco","Josue","Hume"],
             correctAnswer : 2
           }
       }

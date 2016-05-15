@@ -40,6 +40,16 @@ function RegistroController($window,$scope,$ionicPlatform,$ionicModal,$ionicPopu
        $scope.player.science &&
        $scope.player.language){
          $scope.player._id = $scope.player.nickname;
+         $scope.player.statistics=
+         [
+            {matematica:{"correcto":0, "incorrecto":0}},
+            {espanol:{"correcto":0, "incorrecto":0}},
+            {ciencia:{"correcto":0, "incorrecto":0}},
+            {idioma:{"correcto":0, "incorrecto":0}},
+            {civica:{"correcto":0, "incorrecto":0}},
+            {estudios:{"correcto":0, "incorrecto":0}},
+            {partidas:{"ganadas":0, "perdidas":0}}
+        ]
          showBusy();
          service.createPlayer($scope.player)
                 .then(
