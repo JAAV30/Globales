@@ -5,7 +5,7 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
   $ionicPlatform.ready(function() {
 
     console.log("Ready EstadisticasController");
-
+    $scope.currentPlayer = service.getCurrentPlayer();
     $scope.options1 = {
       chart: {
         type: 'pieChart',
@@ -27,12 +27,12 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
     $scope.data1 = [
       {
         key: "Juegos Ganados",
-        y: 4,
+        y: $scope.currentPlayer.statistics.partidas.ganadas,
         color:"#00C853"
       },
       {
         key: "Juegos Perdidos",
-        y: 11,
+        y: $scope.currentPlayer.statistics.partidas.perdidas,
         color : "#D50000"
       }
     ];
@@ -72,27 +72,27 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
         values: [
           {
             "label" : "Matemática" ,
-            "value" : 2
+            "value" :  $scope.currentPlayer.statistics.Matemática.correctas
           } ,
           {
             "label" : "Español" ,
-            "value" : 10
+            "value" : $scope.currentPlayer.statistics.Español.correctas
           } ,
           {
-            "label" : "Química" ,
-            "value" : 7
+            "label" : "Ciencia" ,
+            "value" : $scope.currentPlayer.statistics.Ciencia.correctas
           } ,
           {
             "label" : "Cívica" ,
-            "value" : 18
+            "value" : $scope.currentPlayer.statistics.Cívica.correctas
           } ,
           {
             "label" : "Est. Sociales" ,
-            "value" : 16
+            "value" : $scope.currentPlayer.statistics.Estudios.correctas
           } ,
           {
-            "label" : "Inglés" ,
-            "value" : 5
+            "label" : "Idioma" ,
+            "value" : $scope.currentPlayer.statistics.Idioma.correctas
           }
         ]
       },
@@ -102,33 +102,33 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
         values: [
           {
             "label" : "Matemática" ,
-            "value" : -10
+            "value" : $scope.currentPlayer.statistics.Matemática.incorrectas * -1
           } ,
           {
             "label" : "Español" ,
-            "value" : -4
+            "value" : $scope.currentPlayer.statistics.Español.incorrectas * -1
           } ,
           {
-            "label" : "Química" ,
-            "value" : -5
+            "label" : "Ciencia" ,
+            "value" : $scope.currentPlayer.statistics.Ciencia.incorrectas * -1
           } ,
           {
             "label" : "Cívica" ,
-            "value" : -2
+            "value" : $scope.currentPlayer.statistics.Cívica.incorrectas * -1
           } ,
           {
             "label" : "Est. Sociales" ,
-            "value" : -5
+            "value" : $scope.currentPlayer.statistics.Estudios.incorrectas * -1
           } ,
           {
-            "label" : "Inglés" ,
-            "value" : -6
+            "label" : "Idioma" ,
+            "value" : $scope.currentPlayer.statistics.Idioma.incorrectas * -1
           }
         ]
       }
     ];
 
-    $scope.currentPlayer = service.getCurrentPlayer();
+
 
   });
   $scope.play = function(){

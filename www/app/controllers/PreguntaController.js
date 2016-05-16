@@ -55,7 +55,7 @@ function AppPregunta($scope,$ionicPlatform,$ionicPopup,$injector,service) {
       service.getCurrentPlayer().statistics.Ciencia.correctas=service.getCurrentPlayer().statistics.Ciencia.correctas+service.getInfoGame().Ciencia.correctas;
       service.getCurrentPlayer().statistics.Ciencia.incorrectas=service.getCurrentPlayer().statistics.Ciencia.incorrectas+service.getInfoGame().Ciencia.incorrectas;
 
-      service.updataPlayer(service.getCurrentPlayer());
+
       console.log(service.getCurrentPlayer());
       console.log(service.getInfoGame());
       if(action.status ==="WON"){
@@ -63,6 +63,8 @@ function AppPregunta($scope,$ionicPlatform,$ionicPopup,$injector,service) {
           showMessage("¡Excelente!","Haz ganado el juego",function(){
             $injector.get('$state').go('estadisticas');
             $scope.answered = false;
+            service.getCurrentPlayer().statistics.partidas.ganada = service.getCurrentPlayer().statistics.partidas.ganada + 1;
+            service.updataPlayer(service.getCurrentPlayer());
           });
         },500);
       }
@@ -71,9 +73,12 @@ function AppPregunta($scope,$ionicPlatform,$ionicPopup,$injector,service) {
           showMessage("¡Es una lástima!","Haz perdido el juego",function(){
             $injector.get('$state').go('estadisticas');
             $scope.answered = false;
+            service.getCurrentPlayer().statistics.partidas.perdidas = service.getCurrentPlayer().statistics.partidas.perdidas + 1;
+            service.updataPlayer(service.getCurrentPlayer());
           });
         },500);
       }
+
     }
     else{
        setTimeout(function(){
