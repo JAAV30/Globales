@@ -33,12 +33,13 @@
 }
 
 .roulettebg {
-	background-color:black;
-    background: url(../img/background.jpg);
-    background-size: contain;
+	background-color:#9E9E9E;
+    background-size: cover;
     background-position: center;
     width: 100%;
     height: 620px;
     margin: auto;
     z-index: 2;
+    display: table-cell;
+    vertical-align: middle;
 }

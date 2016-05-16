@@ -1,10 +1,21 @@
-angular.module('app').controller('EstadisticasController',['$scope','$ionicPlatform','$ionicModal','$ionicPopup','$ionicLoading','$injector','QuestionsService',EstadisticasController]);
+angular.module('app').controller('EstadisticasController',['$scope','$rootScope','$ionicPlatform','$ionicModal','$ionicPopup','$ionicLoading','$injector','QuestionsService',EstadisticasController]);
 
-function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$ionicLoading,$injector,service) {
+function EstadisticasController($scope,$rootScope,$ionicPlatform,$ionicModal,$ionicPopup,$ionicLoading,$injector,service) {
 
   $ionicPlatform.ready(function() {
 
+
+  });
+
+  $scope.$parent.$on('$ionicView.loaded', function(){
+
+
     console.log("Ready EstadisticasController");
+  });
+
+  $scope.$parent.$on('$ionicView.beforeEnter', function(e){
+
+    console.log("Entering to Estadisticas");
     $scope.currentPlayer = service.getCurrentPlayer();
     $scope.options1 = {
       chart: {
@@ -127,10 +138,8 @@ function EstadisticasController($scope,$ionicPlatform,$ionicModal,$ionicPopup,$i
         ]
       }
     ];
-
-
-
   });
+
   $scope.play = function(){
 
     //construyo las preguntas para alistar el juego....

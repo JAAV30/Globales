@@ -6,6 +6,7 @@
       //variables questions_db
       var questions_db;
       var _questions; // base array of questions
+
       //questions Arrays -> e=EASY  i= INTERMEDIATE h=HARD
       //Mathematics
       var eMath = [];
@@ -50,6 +51,7 @@
       var num_lives;
       var turn;
       var infoGame;
+      var answered = false;
       //variables app_db
       var app_db;
       var _players;
@@ -76,7 +78,7 @@
           //game  public operations
           prepareToPlay : prepareToPlay,
           continueAction : continueAction,
-          correctAnswerAction,
+          correctAnswerAction: correctAnswerAction,
           failAnswerAction : failAnswerAction,
 
       };
@@ -361,6 +363,30 @@
           Cívica:{"correctas":0, "incorrectas":0},
           Estudios:{"correctas":0, "incorrectas":0}
         };
+        eMath = [];
+        iM =[];
+        hM = [];
+        //Spanish
+        eSpanish = [];
+        iSpanish =[];
+        hSpanish = [];
+        //Social Studies
+        eSStudies = [];
+        iSStudies=[];
+        hSStudies = [];
+        //Science
+        eScience = [];
+        iScience =[];
+        hScience= [];
+        //Civic
+        eCivic = [];
+        iCivic =[];
+        hCivic = [];
+        _lastQuestion;
+        //Language
+        eLanguage = [];
+        iLanguage=[];
+        hLanguage= [];
       };
 
       function prepareToPlay (){
@@ -369,8 +395,8 @@
           function(questions){
 
             _questions.shuffle();
-            var count = buildArrays();  // llenar arreglos con las preguntas segun su materia y dificultad
             initialize_Game();
+            var count = buildArrays();  // llenar arreglos con las preguntas segun su materia y dificultad
             return {"counter":count};
         }));
 
@@ -484,19 +510,21 @@
       };
 
       function correctAnswerAction(question){
-        console.log("SUCCESS!");
-        var subject = _lastQuestion.subject;//question.subject;
-        if(subject == "Química" || subject == "Biología"|| subject == "Física Matemática"){
-          subject="Ciencia";
-        }
-        else if(subject == "Inglés" || subject == "Francés"){
-          subject="Idioma";
-        }
-        else if(subject == "Estudios Sociales"){
-          subject="Estudios";
-        }
-        infoGame[subject].correctas=infoGame[subject].correctas+1;
+        if(!answered){
 
+          console.log("SUCCESS!");
+          var subject = _lastQuestion.subject;//question.subject;
+          if(subject == "Química" || subject == "Biología"|| subject == "Física Matemática"){
+            subject="Ciencia";
+          }
+          else if(subject == "Inglés" || subject == "Francés"){
+            subject="Idioma";
+          }
+          else if(subject == "Estudios Sociales"){
+            subject="Estudios";
+          }
+          infoGame[subject].correctas=infoGame[subject].correctas+1;
+        }
       };
 
       function failAnswerAction(question){

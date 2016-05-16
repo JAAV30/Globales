@@ -18,3 +18,12 @@
 
   display: none;
 }
+.view-with-bg.view-content{
+    background: url(../img/materialBackGround.png);
+    background-size: cover;
+}
+
+.view-with-bg.pane {
+    background: url(../img/materialBackGround.png) !important;
+    background-size: cover !important;
+}
