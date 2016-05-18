@@ -55,9 +55,32 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service,$t
 	$scope.showImage = function(materia) {
 		//$cordovaNativeAudio.play('selected');
 		switch(materia) {
-			case "Matematica":
-			$scope.imageSrc = 'app/img/avatar.svg';
+			case "Matemática":
+			$scope.imageSrc = 'app/img/matematica.png';
 			break;
+
+			case "Español":
+			$scope.imageSrc = 'app/img/espanol.png';
+			break;
+
+			case "Cívica":
+			$scope.imageSrc = 'app/img/civica.png';
+			break;
+
+			case "Estudios Sociales":
+			$scope.imageSrc = 'app/img/sociales.png';
+			break;
+
+			case "Biología": //Corregir
+			$scope.imageSrc = 'app/img/ciencia.png';
+			break;
+
+			case "Inglés": // Corregir
+			$scope.imageSrc = 'app/img/idioma.png';
+			break;
+
+
+
 			default :
 			$scope.imageSrc = 'app/img/ionic.png';
 		}
