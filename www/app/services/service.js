@@ -66,6 +66,7 @@
           syncDB : syncDB,
           prepareQuestion : prepareQuestion,
           getLastQuestion : getLastQuestion,
+          getTurn : getTurn,
           getInfoGame : getInfoGame,
 
           // app operations
@@ -133,6 +134,10 @@
 
       function getLastQuestion (){
         return _lastQuestion;
+      }
+
+      function getTurn (){
+        return turn;
       }
       //*************************DB APP operations***************************
       function getPlayers() {

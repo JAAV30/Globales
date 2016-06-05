@@ -12,6 +12,9 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service,$t
 		loadPhaserSettings(service);
 	});
 
+	$scope.$parent.$on('$ionicView.beforeEnter', function(){
+		$scope.turn=service.getTurn()+1;
+	});
 
 	$scope.play = function() {
 		if (media == null) {
