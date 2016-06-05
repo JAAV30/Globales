@@ -15,6 +15,7 @@
     $scope.$parent.$on('$ionicView.beforeEnter', function(e){
       console.log("Entering to Pregunta View");
       $scope.answered = false;
+      $scope.materia=$scope.question.subject;
     });
     function showMessage(title,message,cb) {
       var alertPopup = $ionicPopup.alert({
