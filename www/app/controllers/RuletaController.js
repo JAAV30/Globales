@@ -11,9 +11,27 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service,$t
 		console.log("Ready RuletaController");
 		loadPhaserSettings(service);
 	});
+	var heartRed="icon ion-heart assertive";
+	var heartDark="icon ion-heart dark";
 
 	$scope.$parent.$on('$ionicView.beforeEnter', function(){
 		$scope.turn=service.getTurn()+1;
+
+		if(service.getLive()==3){
+			$scope.heart1=heartRed;
+			$scope.heart2=heartRed;
+			$scope.heart3=heartRed;
+		}
+		else if(service.getLive()==2){
+			$scope.heart1=heartDark;
+			$scope.heart2=heartRed;
+			$scope.heart3=heartRed;
+		}
+		else if(service.getLive()==1){
+			$scope.heart1=heartDark;
+			$scope.heart2=heartDark;
+			$scope.heart3=heartRed;
+		}
 	});
 
 	$scope.play = function() {

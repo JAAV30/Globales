@@ -67,6 +67,7 @@
           prepareQuestion : prepareQuestion,
           getLastQuestion : getLastQuestion,
           getTurn : getTurn,
+          getLive : getLive,
           getInfoGame : getInfoGame,
           getQuestion : getQuestion,
 
@@ -139,6 +140,9 @@
 
       function getTurn (){
         return turn;
+      }
+      function getLive (){
+        return num_lives;
       }
       //*************************DB APP operations***************************
       function getPlayers() {
