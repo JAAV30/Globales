@@ -72,7 +72,18 @@ function EstadisticasController($scope,$rootScope,$ionicPlatform,$ionicModal,$io
         showXAxis: true,
         showYAxis: false,
         showControls:false,
-        stacked : true
+        stacked : true,
+        tooltip:{
+          duration:0,
+          gravity:'w',
+          distance:25,
+          enabled:true,
+          hideDelay:200,
+          snapDistance:0,
+          valueFormatter:function (d, i) {return xAxis.tickFormat()(d, i);},
+          keyFormatter: function (d, i) {return xAxis.tickFormat()(d, i);},
+          hidden:true
+        }
       }
     };
 

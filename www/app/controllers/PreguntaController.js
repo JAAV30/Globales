@@ -8,6 +8,10 @@
       //$scope.dueno="LuisMi y yo trabajamos aqui, mensaje por medio de scope de angular";
       //se carga de la base de datos
       $scope.question = service.getLastQuestion();
+      if($scope.question._attachments){
+          $scope.imageQuestion = "data:image/jpg;base64,"+$scope.question._attachments["imagen.jpg"].data; // add data URIs
+      }
+
       console.log("Current question:", $scope.question);
 
 
@@ -17,6 +21,7 @@
       $scope.answered = false;
       $scope.materia=$scope.question.subject;
     });
+
     function showMessage(title,message,cb) {
       var alertPopup = $ionicPopup.alert({
         title: title,

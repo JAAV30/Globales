@@ -1,30 +1,41 @@
-<ion-view>
+<ion-view ng-controller="AppPregunta">
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">{{materia}}</h1>
+  </ion-header-bar>
   <ion-pane>
-    <ion-content ng-controller="AppPregunta">
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">{{materia}}</h1>
-      </ion-header-bar>
+    <ion-content>
       <div>
-        <p ng-show="question.structure.header " class="ng-hide">{{question.structure.header}}</p>
-        <br ng-show="question.structure.header" class="ng-hide">
-        <p ng-show="question.structure.proporsals.header" class="ng-hide">{{question.structure.proporsals.header}}</p>
-        <br ng-show="question.structure.proporsals.header" class="ng-hide">
-        <ol ng-show="question.proporsals.list" class="ng-hide">
-          <li ng-repeat="p in question.proporsals.list ">{{p}}</li>
-        </ol>
-        <br ng-show="question.proporsals.list" class="ng-hide">
-        <p ng-show="question.structure.statement" class="ng-hide">{{question.structure.statement}}</p>
-        <br ng-show="question.structure.statement" class="ng-hide">
-        <p >{{question.structure.question}}</p>
-        <br>
-        <button
-          ng-repeat="(key,value) in question.structure.answers"
-          ng-class="!answered ? 'button button-block button-positive' : (question.structure.correctAnswer == {{key}} ? 'button button-block button-balanced' : 'button button-block button-assertive' )"
-          ng-attr-id="{{key}}"
-          ng-click="answerAction(key)">{{value}}
-        </button>
-      </div>
+        <div class="list card padding-top">
+          <div class="item item-body">
+            <p ng-show="question.structure.header " class="ng-hide">{{question.structure.header}}</p>
+            <br ng-show="question.structure.header" class="ng-hide">
+            <p ng-show="question.structure.proporsals.header" class="ng-hide">{{question.structure.proporsals.header}}</p>
+            <br ng-show="question.structure.proporsals.header" class="ng-hide">
 
-    </ion-content>
-  </ion-pane>
+            <img ng-show="question._attachments" class="ng-hide full-image" ng-src="{{imageQuestion}}" alt="" />
+            <br ng-show="question._attachments" class="ng-hide">
+
+            <ol ng-show="question.proporsals.list" class="ng-hide">
+              <li ng-repeat="p in question.proporsals.list ">{{p}}</li>
+            </ol>
+            <br ng-show="question.proporsals.list" class="ng-hide">
+            <p ng-show="question.structure.statement" class="ng-hide">{{question.structure.statement}}</p>
+            <br ng-show="question.structure.statement" class="ng-hide">
+            <p >{{question.structure.question}}</p>
+            <br>
+          </div>
+
+        </div>
+        <button
+        ng-repeat="(key,value) in question.structure.answers"
+        ng-class="!answered ? 'button button-block button-positive' : (question.structure.correctAnswer == {{key}} ? 'button button-block button-balanced' : 'button button-block button-assertive' )"
+        ng-attr-id="{{key}}"
+        ng-click="answerAction(key)">{{value}}
+      </button>
+    </div>
+
+
+
+  </ion-content>
+</ion-pane>
 </ion-view>

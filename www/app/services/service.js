@@ -68,6 +68,7 @@
           getLastQuestion : getLastQuestion,
           getTurn : getTurn,
           getInfoGame : getInfoGame,
+          getQuestion : getQuestion,
 
           // app operations
           createPlayer: createPlayer,
@@ -128,8 +129,8 @@
 
       };
 
-      function getQuestion(id){
-        return $q.when(questions_db.get(id));
+      function getQuestion(id , options){
+        return $q.when(questions_db.get(id,options));
       };
 
       function getLastQuestion (){
@@ -496,7 +497,7 @@
 
         if(questionID){
 
-          return $q.when(getQuestion(questionID))
+          return $q.when(getQuestion(questionID,{attachments: true}))
                    .then(
                      function(questionObj){
                        _lastQuestion = questionObj;
