@@ -17,20 +17,40 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service,$t
 	$scope.$parent.$on('$ionicView.beforeEnter', function(){
 		$scope.turn=service.getTurn()+1;
 
-		if(service.getLive()==3){
+		if(service.getLive()==5){
 			$scope.heart1=heartRed;
 			$scope.heart2=heartRed;
 			$scope.heart3=heartRed;
+			$scope.heart4=heartRed;
+			$scope.heart5=heartRed;
 		}
-		else if(service.getLive()==2){
+		else if(service.getLive()==4){
 			$scope.heart1=heartDark;
 			$scope.heart2=heartRed;
 			$scope.heart3=heartRed;
+			$scope.heart4=heartRed;
+			$scope.heart5=heartRed;
+		}
+		else if(service.getLive()==3){
+			$scope.heart1=heartDark;
+			$scope.heart2=heartDark;
+			$scope.heart3=heartRed;
+			$scope.heart4=heartRed;
+			$scope.heart5=heartRed;
+		}
+		else if(service.getLive()==2){
+			$scope.heart1=heartDark;
+			$scope.heart2=heartDark;
+			$scope.heart3=heartDark;
+			$scope.heart4=heartRed;
+			$scope.heart5=heartRed;
 		}
 		else if(service.getLive()==1){
 			$scope.heart1=heartDark;
 			$scope.heart2=heartDark;
-			$scope.heart3=heartRed;
+			$scope.heart3=heartDark;
+			$scope.heart4=heartDark;
+			$scope.heart5=heartRed;
 		}
 	});
 
@@ -209,7 +229,22 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service,$t
 				var subject = slicePrizes[prize];
 				//prizeText.text = slicePrizes[prize];
 				//$injector.get('$state').transitionTo('pregunta');
-				s.prepareQuestion(subject,"H")
+				var difficulty = "";
+				if($scope.turn <= 5){
+
+					difficulty = "E";
+				}
+				else if($scope.turn <= 10 ){
+
+					difficulty= "I"
+				}
+				else{
+
+					difficulty = "H"
+				}
+				console.log("difficulty",difficulty);
+
+				s.prepareQuestion(subject,difficulty)
 				.then(function(response){
 					console.log("Response: ",response);
 					wierd_modal(prizeText, subject);

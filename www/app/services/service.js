@@ -46,8 +46,8 @@
           }
       }
       //game variable
-      var MAX_QUESTION = 5;
-      var MAX_LIVES = 3;
+      var MAX_QUESTION = 15;
+      var MAX_LIVES = 5;
       var num_lives;
       var turn;
       var infoGame;
@@ -364,7 +364,7 @@
       function initialize_Game (){
 
         turn = 0;
-        num_lives = 3;
+        num_lives = 5;
         infoGame ={
           Matemática:{"correctas":0, "incorrectas":0},
           Español:{"correctas":0, "incorrectas":0},
@@ -451,7 +451,7 @@
 
         }
         else if(subject ==="Estudios Sociales" && difficulty === "I"){
-            questionID = niSStudies.shift();
+            questionID = iSStudies.shift();
 
         }
 

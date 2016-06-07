@@ -38,7 +38,7 @@
     $scope.answerAction = function (e){
       if(!$scope.answered){
         $scope.answered = true;
-        if($scope.question.structure.correctAnswer === e.toString()){
+        if(parseInt($scope.question.structure.correctAnswer) === parseInt(e)){
           service.correctAnswerAction($scope.question);
         }
         else{
