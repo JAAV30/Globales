@@ -35,15 +35,14 @@
       var hLanguage= [];
       //default question
       var _testQuestion ={
+        structure : {
 
-          structure : {
-
-            header:"Lea la siguiente pregunta",
-            question: "Quien es el mas culiolo del equipo?",
-            answers : ["Luismi","Roco","Josue","Hume"],
-            correctAnswer : 2,
-            subject:"Civica"
-          }
+          header:"Lea la siguiente pregunta",
+          question: "El resultado de 2+2 es",
+          answers : ["1","2","3","4"],
+          correctAnswer : 3,
+          subject:"Matemáticas"
+        }
       }
       //game variable
       var MAX_QUESTION = 15;

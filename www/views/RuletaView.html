@@ -1,19 +1,22 @@
 <ion-view>
-  <ion-pane>
-    <ion-content  ng-controller="RuletaController">
-      <div class="bar bar-header bar-dark">
-        <h1 class="title">Ronda {{turn}}/15 </h1>
+  <ion-pane ng-controller="RuletaController">
+    <ion-header-bar class="bar-stable">
+      <div >
+        <h1 class="title">Ronda {{turn}}/15</hr>
       </div>
-
-		<div class="roulettebg">
-      <div class="center">
-        <i class="{{heart1}}"></i>
-        <i class="{{heart2}}"></i>
-        <i class="{{heart3}}"></i>
-        <i class="{{heart4}}"></i>
-        <i class="{{heart5}}"></i>
+      <div>
+        <h4>
+          <i class="{{heart1}}"></i>
+          <i class="{{heart2}}"></i>
+          <i class="{{heart3}}"></i>
+          <i class="{{heart4}}"></i>
+          <i class="{{heart5}}"></i>
+        </h4>
       </div>
-			<div id="workspace" class="center">
+    </ion-header-bar>
+    <ion-content class="center" >
+    <div class="roulettebg">
+      <div id="workspace" class="center">
 				<script id="modal" type="text/ng-template">
 					<div class="modal image-modal transparent" ng-click="closeModal()">
 						<ion-pane class="transparent">
