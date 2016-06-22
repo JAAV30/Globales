@@ -27,3 +27,13 @@
     background: url(../img/materialBackGround.png) !important;
     background-size: cover !important;
 }
+
+ol {
+  list-style: upper-roman;
+}
+
+.listOrder {
+	
+	margin-left: 10%;
+}
+

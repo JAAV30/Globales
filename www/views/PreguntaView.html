@@ -9,18 +9,19 @@
           <div class="item item-body">
             <p ng-show="question.structure.header " class="ng-hide">{{question.structure.header}}</p>
             <br ng-show="question.structure.header" class="ng-hide">
+			
+			<p ng-show="question.structure.statement" class="ng-hide">{{question.structure.statement}}</p>
+            <br ng-show="question.structure.statement" class="ng-hide">
             <p ng-show="question.structure.proporsals.header" class="ng-hide">{{question.structure.proporsals.header}}</p>
             <br ng-show="question.structure.proporsals.header" class="ng-hide">
 
             <img ng-show="question._attachments" class="ng-hide full-image" ng-src="{{imageQuestion}}" alt="" />
             <br ng-show="question._attachments" class="ng-hide">
 
-            <ol ng-show="question.proporsals.list" class="ng-hide">
-              <li ng-repeat="p in question.proporsals.list ">{{p}}</li>
+            <ol  type="I" ng-show="question.structure.proporsals.list" class="ng-hide listOrder">
+              <li ng-repeat="p in question.structure.proporsals.list ">{{p}}</li>
             </ol>
-            <br ng-show="question.proporsals.list" class="ng-hide">
-            <p ng-show="question.structure.statement" class="ng-hide">{{question.structure.statement}}</p>
-            <br ng-show="question.structure.statement" class="ng-hide">
+            <br ng-show="question.structure.proporsals" class="ng-hide">
             <p >{{question.structure.question}}</p>
             <br>
           </div>

@@ -120,10 +120,18 @@ function RuletaController($scope,$ionicPlatform,$injector,$ionicModal,service,$t
 			$scope.imageSrc = 'app/img/idioma.png';
 			break;
 
+			case "Química": //Corregir
+			$scope.imageSrc = 'app/img/ciencia.png';
+			break;
+			
+			case "Física Matemática": //Corregir
+			$scope.imageSrc = 'app/img/ciencia.png';
+			break;
+			
 
 
 			default :
-			$scope.imageSrc = 'app/img/ionic.png';
+			$scope.imageSrc = 'app/img/ciencia.png';
 		}
 		$scope.openModal();
 	}
